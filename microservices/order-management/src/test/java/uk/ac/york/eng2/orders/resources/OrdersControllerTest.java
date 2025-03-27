@@ -13,7 +13,7 @@ import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.Orders;
 import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
 import uk.ac.york.eng2.orders.dto.OrderItemCreateDTO;
-import uk.ac.york.eng2.orders.product_management.api.DefaultApi;
+import uk.ac.york.eng2.orders.product_management.api.ProductsApi;
 import uk.ac.york.eng2.orders.product_management.model.Prices;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrderItemRepository;
@@ -48,9 +48,9 @@ public class OrdersControllerTest {
         repository.deleteAll();
     }
 
-    @MockBean(DefaultApi.class)
-    public DefaultApi getProductsApi() {
-        DefaultApi mock = mock(DefaultApi.class);
+    @MockBean(ProductsApi.class)
+    public ProductsApi getProductsApi() {
+        ProductsApi mock = mock(ProductsApi.class);
         // letting unit price be 1, so total price is just quantity
         when(mock.getPrices(any(), anyInt())).thenAnswer(
                 i -> new Prices(BigDecimal.ONE, new BigDecimal((int) i.getArgument(1)))

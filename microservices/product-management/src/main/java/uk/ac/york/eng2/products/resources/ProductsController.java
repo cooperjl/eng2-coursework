@@ -7,6 +7,7 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.products.domain.OrdersByDay;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Tag(name="products")
 @Controller(ProductsController.PREFIX)
 public class ProductsController {
     public static final String PREFIX = "/products";

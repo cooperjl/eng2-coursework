@@ -30,7 +30,6 @@ dependencies {
     implementation("io.micronaut.flyway:micronaut-flyway")
     implementation("org.flywaydb:flyway-mysql")
 
-    compileOnly("io.micronaut:micronaut-http-client")
     compileOnly("io.micronaut.openapi:micronaut-openapi-annotations")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")

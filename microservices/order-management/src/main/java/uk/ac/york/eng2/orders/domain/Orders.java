@@ -2,6 +2,7 @@ package uk.ac.york.eng2.orders.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micronaut.serde.annotation.Serdeable;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ public class Orders {
     @Id
     private Long id;
 
+    @Schema(type = "string", format = "date")
     @Column
     private Date dateCreated;
 

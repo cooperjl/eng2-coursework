@@ -9,6 +9,7 @@ import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.orders.domain.Customer;
@@ -29,6 +30,7 @@ import java.net.URI;
 import java.sql.Date;
 import java.util.Optional;
 
+@Tag(name = "orders")
 @ExecuteOn(TaskExecutors.BLOCKING)
 @Controller(OrdersController.PREFIX)
 public class OrdersController {

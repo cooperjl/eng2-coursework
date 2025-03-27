@@ -7,6 +7,7 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.orders.domain.Customer;
@@ -17,6 +18,7 @@ import uk.ac.york.eng2.orders.repository.OrdersRepository;
 
 import java.net.URI;
 
+@Tag(name = "customers")
 @Controller(CustomersController.PREFIX)
 public class CustomersController {
     public static final String PREFIX = "/customers";

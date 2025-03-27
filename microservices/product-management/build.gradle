@@ -24,15 +24,14 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.validation:micronaut-validation")
     implementation("jakarta.validation:jakarta.validation-api")
+    implementation("io.micronaut:micronaut-http-client")
 
     implementation("io.micronaut.flyway:micronaut-flyway")
     implementation("org.flywaydb:flyway-mysql")
 
-    compileOnly("io.micronaut:micronaut-http-client")
     compileOnly("io.micronaut.openapi:micronaut-openapi-annotations")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
-    testImplementation("io.micronaut:micronaut-http-client")
     testImplementation("org.hamcrest:hamcrest:3.0")
 }
 

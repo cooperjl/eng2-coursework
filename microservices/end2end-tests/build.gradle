@@ -20,6 +20,7 @@ dependencies {
     implementation("io.micronaut.validation:micronaut-validation")
     implementation("jakarta.validation:jakarta.validation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
+    testImplementation("org.awaitility:awaitility:4.3.0")
 }
 
 application {
@@ -40,7 +41,20 @@ micronaut {
         annotations("uk.ac.york.eng2.integration.*")
     }
     openapi {
-        // add OpenAPI configuration here
+        client("product-management", file("src/main/openapi/product-management-0.0.yml")) {
+            apiPackageName = "uk.ac.york.eng2.integration.product-management.api"
+            modelPackageName = "uk.ac.york.eng2.integration.product-management.model"
+            clientId = "product-management"
+            useReactive = false
+            alwaysUseGenerateHttpResponse = true
+        }
+        client("order-management", file("src/main/openapi/order-management-0.0.yml")) {
+            apiPackageName = "uk.ac.york.eng2.integration.order-management.api"
+            modelPackageName = "uk.ac.york.eng2.integration.order-management.model"
+            clientId = "order-management"
+            useReactive = false
+            alwaysUseGenerateHttpResponse = true
+        }
     }
 }
 
