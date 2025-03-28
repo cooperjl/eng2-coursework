@@ -27,6 +27,10 @@ services:
         condition: service_healthy
       kafka-0:
         condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'curl', '--fail', 'http://localhost:8080/health']
+      timeout: 10s
+      retries: 3
 
   productsdb:
     image: mariadb:11
@@ -56,6 +60,10 @@ services:
         condition: service_healthy
       kafka-0:
         condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'curl', '--fail', 'http://localhost:8081/health']
+      timeout: 10s
+      retries: 3
 
   # 3-node Kafka cluster
   kafka-0:
