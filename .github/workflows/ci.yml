@@ -28,4 +28,13 @@ jobs:
     - name: Test Microservices
       working-directory: ./microservices
       run: ./run-tests.sh
+
+    - name: Store Reports
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: reports
+        path: |
+          **/build/reports/
+          **/build/test-results/
       
