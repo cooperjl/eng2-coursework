@@ -17,6 +17,7 @@ import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrdersRepository;
 
 import java.net.URI;
+import java.util.List;
 
 @Tag(name = "customers")
 @Controller(CustomersController.PREFIX)
@@ -48,8 +49,8 @@ public class CustomersController {
     }
 
     @Get("/{id}/orders")
-    public Page<Orders> getOrders(@PathVariable long id, @QueryValue(defaultValue = "0") int page) {
-        return ordersRepository.findByCustomerId(id, Pageable.from(page));
+    public List<Orders> listOrders(@PathVariable long id) {
+        return ordersRepository.findByCustomerId(id);
     }
 
     @Post

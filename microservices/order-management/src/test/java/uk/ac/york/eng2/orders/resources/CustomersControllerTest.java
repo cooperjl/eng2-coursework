@@ -8,8 +8,15 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.orders.domain.Customer;
+import uk.ac.york.eng2.orders.domain.Orders;
 import uk.ac.york.eng2.orders.dto.CustomerCreateDTO;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
+import uk.ac.york.eng2.orders.repository.OrdersRepository;
+
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.HashSet;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -20,6 +27,8 @@ public class CustomersControllerTest {
     private CustomersClient client;
     @Inject
     private CustomerRepository repository;
+    @Inject
+    private OrdersRepository ordersRepository;
 
     @BeforeEach
     public void setup() {
@@ -41,12 +50,10 @@ public class CustomersControllerTest {
         return customer;
     }
 
-
     @Test
     public void noCustomers() {
         assertEquals(0, client.list().getContent().size());
     }
-
 
     @Test
     public void createCustomer() {
@@ -78,6 +85,14 @@ public class CustomersControllerTest {
     }
 
     @Test
+    public void updateNonExistingCustomer() {
+        CustomerCreateDTO dto = createDTO();
+
+        HttpResponse<Object> response = client.update(10L, dto);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
+    }
+
+    @Test
     public void deleteCustomer() {
         CustomerCreateDTO dto = createDTO();
         long customerId = createGetId(dto);
@@ -87,16 +102,31 @@ public class CustomersControllerTest {
     }
 
     @Test
-    public void updateNonExistingCustomer() {
-        CustomerCreateDTO dto = createDTO();
-
-        HttpResponse<Object> response = client.update(10L, dto);
+    public void deleteNonExistingCustomer() {
+        HttpResponse<Object> response = client.delete(5L);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
     }
 
     @Test
-    public void deleteNonExistingCustomer() {
-        HttpResponse<Object> response = client.delete(5L);
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
+    public void listOrders() {
+        CustomerCreateDTO dto = createDTO();
+        long customerId = createGetId(dto);
+        Customer customer = client.get(customerId);
+
+        Orders order = new Orders();
+        order.setCustomer(customer);
+        order.setAddress("123 Test Lane");
+        order.setPaid(false);
+        order.setDelivered(false);
+        order.setTotalAmount(BigDecimal.ZERO);
+        order.setDateCreated(new Date(System.currentTimeMillis()));
+        order.setOrderItems(new HashSet<>());
+
+        long orderId = ordersRepository.save(order).getId();
+
+        List<Orders> orders = client.listOrders(customerId);
+
+        assertEquals(1, orders.size());
+        assertEquals(orderId, orders.get(0).getId());
     }
 }

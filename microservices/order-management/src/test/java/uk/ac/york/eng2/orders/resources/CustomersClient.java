@@ -8,6 +8,8 @@ import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.Orders;
 import uk.ac.york.eng2.orders.dto.CustomerCreateDTO;
 
+import java.util.List;
+
 @Client(CustomersController.PREFIX)
 public interface CustomersClient {
     @Get
@@ -17,7 +19,7 @@ public interface CustomersClient {
     Customer get(@PathVariable long id);
 
     @Get("/{id}/orders")
-    Page<Orders> getOrders(@PathVariable long id);
+    List<Orders> listOrders(@PathVariable long id);
 
     @Post
     HttpResponse<Object> create(@Body CustomerCreateDTO dto);

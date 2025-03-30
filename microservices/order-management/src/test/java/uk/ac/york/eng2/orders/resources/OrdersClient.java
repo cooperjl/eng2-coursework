@@ -29,6 +29,12 @@ public interface OrdersClient {
     @Put("/{id}")
     HttpResponse<Object> update(@PathVariable long id, @Body OrderCreateDTO dto);
 
+    @Put("/{id}/delivered")
+    HttpResponse<Object> updateDelivered(@PathVariable long id, @Body boolean delivered);
+
+    @Put("/{id}/paid")
+    HttpResponse<Object> updatePaid(@PathVariable long id, @Body boolean paid);
+
     @Delete("/{id}")
     HttpResponse<Object> delete(@PathVariable long id);
 }

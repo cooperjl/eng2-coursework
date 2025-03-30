@@ -70,7 +70,7 @@ public class OrderWorkflowTest {
 
         // Test getting prices from product management api into order management
         await().atMost(Duration.ofSeconds(10)).until(unitPriceBecomes(orderId, BigDecimal.valueOf(6.71)));
-        //await().atMost(Duration.ofSeconds(10)).until(totalPriceBecomes(orderId, BigDecimal.valueOf(6.71).multiply(BigDecimal.valueOf(4))));
+        await().atMost(Duration.ofSeconds(10)).until(totalPriceBecomes(orderId, BigDecimal.valueOf(6.71).multiply(BigDecimal.valueOf(4))));
 
         // Test orders by day producing from order management and consuming from product management
         String currentDay = ordersApi.get1(orderId).body().getDateCreated().toString();

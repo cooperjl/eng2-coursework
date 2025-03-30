@@ -79,7 +79,7 @@ public class OrdersControllerTest {
         Set<OrderItemCreateDTO> orderItems = new HashSet<>();
         OrderItemCreateDTO orderItem = new OrderItemCreateDTO();
         orderItem.setProductId(1L);
-        orderItem.setQuantity(1);
+        orderItem.setQuantity(2);
         orderItems.add(orderItem);
 
         order.setAddress("23 Test Avenue");
@@ -111,6 +111,7 @@ public class OrdersControllerTest {
 
         assertEquals(dto.getAddress(), order.getAddress());
         assertEquals(dto.getCustomerId(), client.getCustomer(orderId).getId());
+        assertThat(BigDecimal.valueOf(2), Matchers.comparesEqualTo(order.getTotalAmount()));
         assertThat(BigDecimal.ONE, Matchers.comparesEqualTo(client.listItems(orderId).getContent().get(0).getUnitPrice()));
     }
 
@@ -156,5 +157,28 @@ public class OrdersControllerTest {
     public void deleteNonExistingOrder() {
         HttpResponse<Object> response = client.delete(5L);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatus());
+    }
+
+    @Test
+    public void updatePaidAndDelivered() {
+        long customerId = createCustomer();
+        OrderCreateDTO dto = createDTO(customerId);
+        long orderId = createGetId(dto);
+
+        client.updateDelivered(orderId, true);
+        client.updatePaid(orderId, true);
+        Orders order = client.get(orderId);
+
+        assertEquals(true, order.getDelivered());
+        assertEquals(true, order.getPaid());
+    }
+
+    @Test
+    public void updatePaidAndDeliveredWithNonExistingOrder() {
+        HttpResponse<Object> deliveredResponse = client.updateDelivered(5L, true);
+        assertEquals(HttpStatus.NOT_FOUND, deliveredResponse.getStatus());
+
+        HttpResponse<Object> paidResponse = client.updatePaid(5L, true);
+        assertEquals(HttpStatus.NOT_FOUND, paidResponse.getStatus());
     }
 }

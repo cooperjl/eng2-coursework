@@ -1,6 +1,5 @@
 package uk.ac.york.eng2.orders.resources;
 
-import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
 import io.micronaut.http.HttpResponse;
@@ -60,6 +59,8 @@ public class OrdersController {
 
         order = repository.save(order);
 
+        BigDecimal totalPrice = BigDecimal.ZERO;
+
         for (OrderItemCreateDTO orderItemDTO : dto.getOrderItems()) {
             OrderItem orderItem = new OrderItem(orderItemDTO.getProductId(), orderItemDTO.getQuantity());
             orderItem.setOrder(order);
@@ -69,11 +70,12 @@ public class OrdersController {
             }
             ProductPricingInfo info = optionalInfo.get();
             orderItem.setUnitPrice(info.unitPrices());
-            // send event with the total price of the item to be added to the order's total price
-            producer.pricingInfo(orderItemDTO.getProductId(), info);
             orderItemRepository.save(orderItem);
-        }
 
+            totalPrice = totalPrice.add(info.totalPrices());
+        }
+        order.setTotalAmount(totalPrice);
+        order = repository.save(order);
         return order;
     }
 
@@ -97,6 +99,7 @@ public class OrdersController {
         return customerRepository.findByOrdersId(id).orElse(null);
     }
 
+    @Transactional
     @Post
     public HttpResponse<Object> create(@Body OrderCreateDTO dto) {
         Orders order = new Orders();
@@ -114,10 +117,30 @@ public class OrdersController {
     @Transactional
     @Put("/{id}")
     public void update(@PathVariable long id, @Body OrderCreateDTO dto) {
-        @NonNull Orders order = repository.findById(id)
+        Orders order = repository.findById(id)
                 .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found"));
 
         dtoToOrder(dto, order);
+    }
+
+    @Transactional
+    @Put("/{id}/delivered")
+    public void updateDelivered(@PathVariable long id, @Body boolean delivered) {
+        Orders order = repository.findById(id)
+                .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found"));
+
+        order.setDelivered(delivered);
+        repository.save(order);
+    }
+
+    @Transactional
+    @Put("/{id}/paid")
+    public void updatePaid(@PathVariable long id, @Body boolean paid) {
+        Orders order = repository.findById(id)
+                .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found"));
+
+        order.setPaid(paid);
+        repository.save(order);
     }
 
     @Delete("/{id}")

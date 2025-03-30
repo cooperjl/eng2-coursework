@@ -9,7 +9,4 @@ import uk.ac.york.eng2.orders.gateways.ProductPricingInfo;
 public interface OrderEventProducer {
     @Topic(OrdersTopicFactory.TOPIC_ORDER_PLACED)
     void orderPlaced(@KafkaKey long productId, OrderInfo orderInfo);
-
-    @Topic(OrdersTopicFactory.TOPIC_PRICING_INFO)
-    void pricingInfo(@KafkaKey long orderId, ProductPricingInfo pricingInfo);
 }
