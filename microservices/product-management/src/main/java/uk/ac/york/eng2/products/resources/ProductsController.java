@@ -56,7 +56,7 @@ public class ProductsController {
     public Map<Date, Integer> getDailyOrders(@PathVariable long id, @QueryValue(defaultValue = "0") int page) {
         Map<Date, Integer> stats = new HashMap<>();
 
-        for (OrdersByDay ordersByDay : ordersByDayRepository.findAll(Pageable.from(page))) {
+        for (OrdersByDay ordersByDay : ordersByDayRepository.findByProductId(id, Pageable.from(page))) {
             stats.put(ordersByDay.getDay(), ordersByDay.getCount());
         }
 

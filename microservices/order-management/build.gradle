@@ -6,7 +6,7 @@ plugins {
     id("jacoco")
 }
 
-version = "0.1"
+version = "1.0"
 group = "uk.ac.york.cs.eng2.products"
 
 repositories {
@@ -61,7 +61,7 @@ micronaut {
         sharedServer = true
     }
     openapi {
-        client("product-management", file("src/main/openapi/product-management-0.0.yml")) {
+        client("product-management", file("src/main/openapi/product-management-1.0.yml")) {
             apiPackageName = "uk.ac.york.eng2.orders.product-management.api"
             modelPackageName = "uk.ac.york.eng2.orders.product-management.model"
             clientId = "product-management"

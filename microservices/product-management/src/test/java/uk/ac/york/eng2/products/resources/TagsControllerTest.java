@@ -11,13 +11,10 @@ import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.domain.Tag;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 import uk.ac.york.eng2.products.dto.TagCreateDTO;
-import uk.ac.york.eng2.products.repository.ProductRepository;
 import uk.ac.york.eng2.products.repository.TagRepository;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -108,7 +105,7 @@ public class TagsControllerTest {
 
         // Product owns the relationship
         HttpResponse<Object> response = productsClient.create(productDTO);
-        long productId = Long.valueOf(response.header(HttpHeaders.LOCATION).split("/")[2]);
+        long productId = Long.parseLong(response.header(HttpHeaders.LOCATION).split("/")[2]);
         TagCreateDTO dto = new TagCreateDTO();
         dto.setName("Test Tag");
         long tagId = createGetId(dto);

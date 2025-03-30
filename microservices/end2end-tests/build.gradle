@@ -4,7 +4,7 @@ plugins {
     id('io.micronaut.openapi') version '4.4.4'
 }
 
-version = "0.1"
+version = "1.0"
 group = "uk.ac.york.cs.eng2.end2end"
 
 repositories {
@@ -41,14 +41,14 @@ micronaut {
         annotations("uk.ac.york.eng2.integration.*")
     }
     openapi {
-        client("product-management", file("src/main/openapi/product-management-0.0.yml")) {
+        client("product-management", file("src/main/openapi/product-management-1.0.yml")) {
             apiPackageName = "uk.ac.york.eng2.integration.product-management.api"
             modelPackageName = "uk.ac.york.eng2.integration.product-management.model"
             clientId = "product-management"
             useReactive = false
             alwaysUseGenerateHttpResponse = true
         }
-        client("order-management", file("src/main/openapi/order-management-0.0.yml")) {
+        client("order-management", file("src/main/openapi/order-management-1.0.yml")) {
             apiPackageName = "uk.ac.york.eng2.integration.order-management.api"
             modelPackageName = "uk.ac.york.eng2.integration.order-management.model"
             clientId = "order-management"

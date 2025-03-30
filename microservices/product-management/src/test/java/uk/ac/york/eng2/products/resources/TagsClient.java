@@ -25,8 +25,8 @@ public interface TagsClient {
     HttpResponse<Object> createTag(@Body TagCreateDTO dto);
 
     @Put("/{id}")
-    public HttpResponse<Object> updateTag(@PathVariable long id, @Body TagCreateDTO dto);
+    HttpResponse<Object> updateTag(@PathVariable long id, @Body TagCreateDTO dto);
 
     @Delete("/{id}")
-    public HttpResponse<Object> deleteTag(@PathVariable long id);
+    HttpResponse<Object> deleteTag(@PathVariable long id);
 }

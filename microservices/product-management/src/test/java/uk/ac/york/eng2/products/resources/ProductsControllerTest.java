@@ -13,7 +13,6 @@ import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.domain.Tag;
 import uk.ac.york.eng2.products.dto.Prices;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
-import uk.ac.york.eng2.products.dto.TagCreateDTO;
 import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
 import uk.ac.york.eng2.products.repository.TagRepository;

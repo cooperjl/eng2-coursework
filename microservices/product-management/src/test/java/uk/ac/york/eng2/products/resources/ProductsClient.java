@@ -9,8 +9,6 @@ import uk.ac.york.eng2.products.domain.Tag;
 import uk.ac.york.eng2.products.dto.Prices;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 
-import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

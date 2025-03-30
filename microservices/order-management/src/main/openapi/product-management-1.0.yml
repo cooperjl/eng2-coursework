@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: product-management
-  version: "0.0"
+  version: "1.0"
 paths:
   /products:
     get:
@@ -148,12 +148,196 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Prices"
+  /products/{id}/tags:
+    get:
+      tags:
+      - products
+      operationId: listTags
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: listTags 200 response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tag"
+  /products/{id}/tags/{tagId}:
+    put:
+      tags:
+      - products
+      operationId: addProductTag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: tagId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: addProductTag 200 response
+    delete:
+      tags:
+      - products
+      operationId: removeProductTag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: tagId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: removeProductTag 200 response
+  /tags:
+    get:
+      tags:
+      - tags
+      operationId: listTags_1
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "200":
+          description: listTags_1 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Page_Tag_"
+    post:
+      tags:
+      - tags
+      operationId: createTag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TagCreateDTO"
+        required: true
+      responses:
+        "200":
+          description: createTag 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+  /tags/{id}:
+    get:
+      tags:
+      - tags
+      operationId: getTag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: getTag 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tag"
+    put:
+      tags:
+      - tags
+      operationId: updateTag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TagCreateDTO"
+        required: true
+      responses:
+        "200":
+          description: updateTag 200 response
+    delete:
+      tags:
+      - tags
+      operationId: deleteTag
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: deleteTag 200 response
+  /tags/{id}/products:
+    get:
+      tags:
+      - tags
+      operationId: listProducts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: listProducts 200 response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
 components:
   schemas:
     Page_Product_:
       type: object
       allOf:
       - $ref: "#/components/schemas/Slice_Product_"
+      - properties:
+          totalSize:
+            type: integer
+            format: int64
+          totalPages:
+            type: integer
+            format: int32
+    Page_Tag_:
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/Slice_Tag_"
       - properties:
           totalSize:
             type: integer
@@ -239,6 +423,32 @@ components:
         numberOfElements:
           type: integer
           format: int32
+    Slice_Tag_:
+      required:
+      - content
+      - pageable
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tag"
+        pageable:
+          $ref: "#/components/schemas/Pageable"
+        pageNumber:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
     Sort:
       required:
       - orderBy
@@ -268,3 +478,17 @@ components:
       enum:
       - ASC
       - DESC
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          nullable: true
+        name:
+          type: string
+    TagCreateDTO:
+      type: object
+      properties:
+        name:
+          type: string

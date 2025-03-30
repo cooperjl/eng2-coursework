@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: order-management
-  version: "0.0"
+  version: "1.0"
 paths:
   /customers:
     get:
@@ -97,7 +97,7 @@ paths:
     get:
       tags:
       - customers
-      operationId: getOrders
+      operationId: listOrders
       parameters:
       - name: id
         in: path
@@ -105,20 +105,15 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: page
-        in: query
-        required: true
-        schema:
-          type: integer
-          format: int32
-          default: 0
       responses:
         "200":
-          description: getOrders 200 response
+          description: listOrders 200 response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Page_Orders_"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Orders"
   /orders:
     get:
       tags:
@@ -228,6 +223,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Customer"
+  /orders/{id}/delivered:
+    put:
+      tags:
+      - orders
+      operationId: updateDelivered
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: boolean
+        required: true
+      responses:
+        "200":
+          description: updateDelivered 200 response
   /orders/{id}/items:
     get:
       tags:
@@ -254,6 +270,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Page_OrderItem_"
+  /orders/{id}/paid:
+    put:
+      tags:
+      - orders
+      operationId: updatePaid
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: boolean
+        required: true
+      responses:
+        "200":
+          description: updatePaid 200 response
 components:
   schemas:
     Customer:

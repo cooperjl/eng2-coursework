@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.info.*;
 @OpenAPIDefinition(
     info = @Info(
             title = "order-management",
-            version = "0.0"
+            version = "1.0"
     )
 )
 public class Application {

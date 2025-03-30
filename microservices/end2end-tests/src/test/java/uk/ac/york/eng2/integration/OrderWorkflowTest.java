@@ -4,7 +4,6 @@ import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
-import jakarta.validation.Valid;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.integration.order_management.api.CustomersApi;
 import uk.ac.york.eng2.integration.order_management.api.OrdersApi;
