@@ -1,2 +1,428 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" name="viewpoint" version="12.0.0.2017041100"/>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="viewpoint" version="12.0.0.2017041100">
+  <ownedViewpoints name="Viewpoint" modelFileExtension="offers">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="offers.diagrams.products" label="Products Diagram" domainClass="offers::Model" enablePopupBars="true">
+      <metamodel href="../../uk.ac.york.cs.eng2.offers/model/offers.ecore#/"/>
+      <defaultLayer name="offers.products.layers.default" label="Default Layer">
+        <nodeMappings name="offers.products.nodes.category" label="Category Node" labelDirectEdit="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.products.tools.editCategoryLabel']" domainClass="offers::Category">
+          <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="offers.products.edges.subcategory" label="Subcategory Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@nodeMappings[name='offers.products.nodes.category']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@nodeMappings[name='offers.products.nodes.category']" targetFinderExpression="feature:subcategories" sourceFinderExpression="var:self" domainClass="offers::Category" useDomainElement="true" reconnections="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.products.tools.reconnectSubcategoryEdgeTarget'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.products.tools.reconnectSubcategoryEdgeSource']">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="offers.products.edges.product" label="Product Edge" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.products.tools.deleteProductEdge']" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@nodeMappings[name='offers.products.nodes.category']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@additionalLayers[name='offers.products.layers.products']/@containerMappings[name='offers.products.containers.products']" targetFinderExpression="feature:products" reconnections="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.products.tools.reconnectProductEdgeTarget'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.products.tools.reconnectProductEdgeSource']">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <toolSections name="offers.products.nodeTools" label="Node Tools">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="offers.products.tools.createProduct" label="Create Product" containerMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@additionalLayers[name='offers.products.layers.products']/@containerMappings[name='offers.products.containers.products']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::Product" referenceName="products"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.products.tools.createCategory" label="Create Category" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@nodeMappings[name='offers.products.nodes.category']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::Category" referenceName="categories"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.products.tools.createTag" label="Create Tag" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@additionalLayers[name='offers.products.layers.products']/@containerMappings[name='offers.products.containers.products']/@subNodeMappings[name='offers.products.nodes.tags']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.eContainer()">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::Tag" referenceName="tags">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="tags" valueExpression="var:instance"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="offers.products.tools.createProduct" label="Create Product" containerMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@additionalLayers[name='offers.products.layers.products']/@containerMappings[name='offers.products.containers.products']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="offers.products.tools.editCategoryLabel" label="Edit Category Label" inputLabelExpression="feature:name">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="offers.products.tools.editProductLabel" label="Edit Product Label" inputLabelExpression="feature:name">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerDropDescription" name="offers.products.tools.moveTag" label="Move Tag" mappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@additionalLayers[name='offers.products.layers.products']/@containerMappings[name='offers.products.containers.products']/@subNodeMappings[name='offers.products.nodes.tags']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:If" conditionExpression="aql:not self.tags->exists(tag | tag == element)">
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:oldSemanticContainer">
+                  <subModelOperations xsi:type="tool_1:Unset" featureName="tags" elementExpression="var:element">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:newSemanticContainer">
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="tags" valueExpression="var:element"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="offers.products.tools.deleteTagFromProduct" label="Delete Tag From Product">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:containerView.target">
+                <subModelOperations xsi:type="tool_1:Unset" featureName="tags" elementExpression="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="offers.products.edgeTools" label="Edge Tools">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="offers.products.tools.createSubcategoryEdge" label="Create Subcategory Edge" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@edgeMappings[name='offers.products.edges.subcategory']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="subcategories" valueExpression="var:target"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="offers.products.tools.createProductEdge" label="Create Product Edge" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@edgeMappings[name='offers.products.edges.product']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="products" valueExpression="var:target"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="offers.products.tools.deleteProductEdge" label="Delete Product Edge">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:Unset" featureName="products" elementExpression="aql:elementView.targetNode.target"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="offers.products.tools.reconnectSubcategoryEdgeTarget" label="Reconnect Subcategory Edge Target">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.eResource().getContents()->first()">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="categories" valueExpression="var:source">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="subcategories" valueExpression="var:target"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="offers.products.tools.reconnectSubcategoryEdgeSource" label="Reconnect Subcategory Edge Source" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:Unset" featureName="subcategories" elementExpression="aql:edgeView.targetNode.target">
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:target">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="subcategories" valueExpression="aql:edgeView.targetNode.target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="offers.products.tools.reconnectProductEdgeTarget" label="Reconnect Product Edge Target">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:Unset" featureName="products" elementExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="products" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="offers.products.tools.reconnectProductEdgeSource" label="Reconnect Product Edge Source" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:Unset" featureName="products" elementExpression="aql:edgeView.targetNode.target">
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:target">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="products" valueExpression="aql:edgeView.targetNode.target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+      <additionalLayers name="offers.products.layers.products" label="Product Layer" activeByDefault="true">
+        <containerMappings name="offers.products.containers.products" label="Product Container" labelDirectEdit="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.products.tools.editProductLabel']" domainClass="offers::Product" dropDescriptions="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.products.tools.moveTag']">
+          <subNodeMappings name="offers.products.nodes.tags" label="Tag Node" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.products.tools.deleteTagFromProduct']" semanticCandidatesExpression="feature:tags" domainClass="offers::Tag">
+            <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW" width="10" height="3">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
+          </style>
+        </containerMappings>
+      </additionalLayers>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="offers.diagrams.offers" label="Offers Diagram" domainClass="offers::Model" enablePopupBars="true">
+      <metamodel href="../../uk.ac.york.cs.eng2.offers/model/offers.ecore#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="offers.offers.edges.trigger2" label="Trigger Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']" targetFinderExpression="feature:offer" sourceFinderExpression="aql:self.eContainer()" domainClass="offers::Trigger" useDomainElement="true" reconnections="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.offers.tools.reconnectTriggerTarget'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.offers.tools.reconnectTriggerSource']">
+          <style sizeComputationExpression="2" routingStyle="manhattan">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12" labelExpression="feature:triggerType">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="offers.offers.containers.offers" label="Offer Container" labelDirectEdit="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.offers.tools.editOfferLabel']" domainClass="offers::Offer" dropDescriptions="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.2/@ownedTools[name='offers.offers.tools.moveCondition'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.offers.tools.moveAction']">
+          <borderedNodeMappings name="offers.offers.nodes.priceCondition" label="Price Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::PriceCondition">
+            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/PriceCondition.svg" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
+            </style>
+          </borderedNodeMappings>
+          <borderedNodeMappings name="offers.offers.nodes.dailyOrderCondition" label="Daily Order Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::DailyOrderCondition">
+            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/DailyOrderCondition.svg" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+            </style>
+          </borderedNodeMappings>
+          <borderedNodeMappings name="offers.offers.nodes.taggedCondition" label="Tagged Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::TaggedCondition">
+            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/TaggedCondition.svg" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            </style>
+          </borderedNodeMappings>
+          <borderedNodeMappings name="offers.offers.nodes.productCondition" label="Product Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::ProductCondition">
+            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/ProductCondition.svg" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
+            </style>
+          </borderedNodeMappings>
+          <borderedNodeMappings name="offers.offers.nodes.dateRangeCondition" label="Date Range Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::DateRangeCondition">
+            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/DateRangeCondition.svg" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+            </style>
+          </borderedNodeMappings>
+          <subNodeMappings name="offers.offers.nodes.discount" label="Discount Node" labelDirectEdit="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.offers.tools.editActionLabel']" semanticCandidatesExpression="feature:actions" domainClass="offers::Action">
+            <style xsi:type="style:SquareDescription" labelSize="12" tooltipExpression="var:self" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="offers.products.offerTools" label="Offer Tools">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="offers.offers.tools.createOffer" label="Create Offer" containerMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::Offer" referenceName="offers"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="offers.offers.tools.createTriggerEdge" label="Create Trigger Edge" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@edgeMappings[name='offers.offers.edges.trigger2']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::Trigger" referenceName="triggers">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="offer" valueExpression="var:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="offers.offers.tools.editOfferLabel" label="Edit Offer Label" inputLabelExpression="feature:name">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="offers.offers.tools.reconnectTriggerTarget" label="Reconnect Trigger Target">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:Unset" featureName="offer" elementExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="offer" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="offers.offers.tools.reconnectTriggerSource" label="Reconnect Trigger Source" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:Unset" featureName="triggers" elementExpression="var:element">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:target">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="triggers" valueExpression="var:element"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="offers.products.actionTools" label="Action Tools">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.offers.tools.createProductDiscount" label="Create Product Discount" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@subNodeMappings[name='offers.offers.nodes.discount']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::ProductDiscount" referenceName="actions">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:self.eClass().name"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.offers.tools.createTaggedDiscount" label="Create Tagged Discount" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@subNodeMappings[name='offers.offers.nodes.discount']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::TaggedDiscount" referenceName="actions">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:self.eClass().name"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.offers.tools.createOrderDiscount" label="Create Order Discount" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@subNodeMappings[name='offers.offers.nodes.discount']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::OrderDiscount" referenceName="actions">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:self.eClass().name"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerDropDescription" name="offers.offers.tools.moveAction" label="Move Action" mappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@subNodeMappings[name='offers.offers.nodes.discount']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:newSemanticContainer">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="actions" valueExpression="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="offers.offers.tools.editActionLabel" label="Edit Action Label" inputLabelExpression="feature:name">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="offers.products.conditionTools" label="Condition Tools">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.offers.tools.createTaggedCondition" label="Create Tagged Condition" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.taggedCondition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::TaggedCondition" referenceName="conditions"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.offers.tools.createProductCondition" label="Create Product Condition" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.productCondition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::ProductCondition" referenceName="conditions"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.offers.tools.createPriceCondition" label="Create Price Condition" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.priceCondition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::PriceCondition" referenceName="conditions"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.offers.tools.createDateRangeCondition" label="Create Date Range Condition" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.dateRangeCondition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::DateRangeCondition" referenceName="conditions"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.offers.tools.createDailyCondition" label="Create Daily Order Condition" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.dailyOrderCondition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::DailyOrderCondition" referenceName="conditions"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerDropDescription" name="offers.offers.tools.moveCondition" label="Move Condition" mappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.dailyOrderCondition'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.dateRangeCondition'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.priceCondition'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.productCondition'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']/@borderedNodeMappings[name='offers.offers.nodes.taggedCondition']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:newSemanticContainer">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="conditions" valueExpression="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>

@@ -1,3 +1,63 @@
-// Write your EVL validation rules here.
-//
-// To run them, right-click on the Sirius diagram background and select "Validate diagram".
+// Operation to recursively check trigger dependency cycles
+operation Trigger checkDependencies(offers : Set) : Boolean {
+	// there is a cycle if the current offer has already been visited
+	if (offers.includes(self.offer)) {
+		return true;
+	}
+	
+	offers.add(self.offer);
+	var cycles = self.offer.triggers.exists(t | t.checkDependencies(offers));
+	offers.remove(self.offer);
+	
+	return cycles;
+}
+
+pre {
+	var productNames = Product.all.name;
+}
+
+context Product {
+	constraint ProductNamesAreUnique {
+		check: productNames.select(name | name == self.name).size() == 1
+		message : "Product name '" + self.name + "' is not unique"
+	}
+}
+
+context Action {
+	constraint PercentageDiscountsValid {
+		check: self.percentageDiscount >= 0 and self.percentageDiscount <= 100
+		message : self.percentageDiscount + " is not a valid number for a percentage discount, must be between 0.0 and 100.0"
+	}
+}
+
+// In context of the Model itself, else error would be duplicated over types.
+context Model {
+	constraint OneInitialRule {
+		check: self.offers.size() - Trigger.all.offer.asSet().size() == 1
+		message: "There must be exactly one initial offer rule which is not triggered by any other"
+	}
+}
+
+context Offer {
+	constraint TriggerAtMostOne {
+		check {
+			var triggerTypes = self.triggers.triggerType;
+			return triggerTypes.size() == triggerTypes.asSet().size();
+		}
+		message: "Offer rule has multiple triggers of the same type"
+	}
+	constraint AlwaysIsExclusive {
+		guard: self.satisfies("TriggerAtMostOne")
+		check {
+			if (self.triggers.triggerType.exists(t | t == TriggerType#ALWAYS)) {
+				return self.triggers.triggerType.size() == 1;
+			}
+			return true;
+		}
+		message: "ALWAYS trigger cannot be combined with other triggers"
+	}
+	constraint NoDependencyCycles {
+		check: not self.triggers.exists(t | t.checkDependencies(self.asSet()))
+		message: "There is a dependency cycle between offer rule triggers"
+	}
+}

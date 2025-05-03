@@ -95,6 +95,305 @@ public class OffersItemProviderAdapterFactory extends OffersAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Category} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CategoryItemProvider categoryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Category}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCategoryAdapter() {
+		if (categoryItemProvider == null) {
+			categoryItemProvider = new CategoryItemProvider(this);
+		}
+
+		return categoryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Product} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProductItemProvider productItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Product}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProductAdapter() {
+		if (productItemProvider == null) {
+			productItemProvider = new ProductItemProvider(this);
+		}
+
+		return productItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Tag} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TagItemProvider tagItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Tag}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTagAdapter() {
+		if (tagItemProvider == null) {
+			tagItemProvider = new TagItemProvider(this);
+		}
+
+		return tagItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Offer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OfferItemProvider offerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Offer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOfferAdapter() {
+		if (offerItemProvider == null) {
+			offerItemProvider = new OfferItemProvider(this);
+		}
+
+		return offerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.Trigger} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TriggerItemProvider triggerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.Trigger}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTriggerAdapter() {
+		if (triggerItemProvider == null) {
+			triggerItemProvider = new TriggerItemProvider(this);
+		}
+
+		return triggerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.TaggedCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TaggedConditionItemProvider taggedConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.TaggedCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTaggedConditionAdapter() {
+		if (taggedConditionItemProvider == null) {
+			taggedConditionItemProvider = new TaggedConditionItemProvider(this);
+		}
+
+		return taggedConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.ProductCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProductConditionItemProvider productConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.ProductCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProductConditionAdapter() {
+		if (productConditionItemProvider == null) {
+			productConditionItemProvider = new ProductConditionItemProvider(this);
+		}
+
+		return productConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.DailyOrderCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DailyOrderConditionItemProvider dailyOrderConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.DailyOrderCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDailyOrderConditionAdapter() {
+		if (dailyOrderConditionItemProvider == null) {
+			dailyOrderConditionItemProvider = new DailyOrderConditionItemProvider(this);
+		}
+
+		return dailyOrderConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.PriceCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PriceConditionItemProvider priceConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.PriceCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPriceConditionAdapter() {
+		if (priceConditionItemProvider == null) {
+			priceConditionItemProvider = new PriceConditionItemProvider(this);
+		}
+
+		return priceConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.DateRangeCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DateRangeConditionItemProvider dateRangeConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.DateRangeCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDateRangeConditionAdapter() {
+		if (dateRangeConditionItemProvider == null) {
+			dateRangeConditionItemProvider = new DateRangeConditionItemProvider(this);
+		}
+
+		return dateRangeConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.TaggedDiscount} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TaggedDiscountItemProvider taggedDiscountItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.TaggedDiscount}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTaggedDiscountAdapter() {
+		if (taggedDiscountItemProvider == null) {
+			taggedDiscountItemProvider = new TaggedDiscountItemProvider(this);
+		}
+
+		return taggedDiscountItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.ProductDiscount} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProductDiscountItemProvider productDiscountItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.ProductDiscount}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProductDiscountAdapter() {
+		if (productDiscountItemProvider == null) {
+			productDiscountItemProvider = new ProductDiscountItemProvider(this);
+		}
+
+		return productDiscountItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link uk.ac.york.cs.eng2.offers.OrderDiscount} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrderDiscountItemProvider orderDiscountItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link uk.ac.york.cs.eng2.offers.OrderDiscount}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOrderDiscountAdapter() {
+		if (orderDiscountItemProvider == null) {
+			orderDiscountItemProvider = new OrderDiscountItemProvider(this);
+		}
+
+		return orderDiscountItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,6 +499,19 @@ public class OffersItemProviderAdapterFactory extends OffersAdapterFactory imple
 	@Override
 	public void dispose() {
 		if (modelItemProvider != null) modelItemProvider.dispose();
+		if (categoryItemProvider != null) categoryItemProvider.dispose();
+		if (productItemProvider != null) productItemProvider.dispose();
+		if (tagItemProvider != null) tagItemProvider.dispose();
+		if (offerItemProvider != null) offerItemProvider.dispose();
+		if (triggerItemProvider != null) triggerItemProvider.dispose();
+		if (taggedConditionItemProvider != null) taggedConditionItemProvider.dispose();
+		if (productConditionItemProvider != null) productConditionItemProvider.dispose();
+		if (dailyOrderConditionItemProvider != null) dailyOrderConditionItemProvider.dispose();
+		if (priceConditionItemProvider != null) priceConditionItemProvider.dispose();
+		if (dateRangeConditionItemProvider != null) dateRangeConditionItemProvider.dispose();
+		if (taggedDiscountItemProvider != null) taggedDiscountItemProvider.dispose();
+		if (productDiscountItemProvider != null) productDiscountItemProvider.dispose();
+		if (orderDiscountItemProvider != null) orderDiscountItemProvider.dispose();
 	}
 
 }

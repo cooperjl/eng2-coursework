@@ -12,75 +12,80 @@
       <genEnumLiterals ecoreEnumLiteral="offers.ecore#//TriggerType/IF_NOT_MATCH"/>
       <genEnumLiterals ecoreEnumLiteral="offers.ecore#//TriggerType/ALWAYS"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="offers.ecore#//ComparisonOperator">
-      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//ComparisonOperator/LESS_THAN"/>
-      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//ComparisonOperator/LESS_THAN_OR_EQUAL"/>
-      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//ComparisonOperator/GREATER_THAN"/>
-      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//ComparisonOperator/GREATER_THAN_OR_EQUAL"/>
-      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//ComparisonOperator/EQUAL"/>
-      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//ComparisonOperator/NOT_EQUAL"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="offers.ecore#//Comparison">
+      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//Comparison/EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//Comparison/NOT_EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//Comparison/LESS_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//Comparison/LESS_THAN_EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//Comparison/GREATER_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="offers.ecore#//Comparison/GREATER_THAN_EQUAL"/>
     </genEnums>
     <genClasses ecoreClass="offers.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Model/products"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Model/categories"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Model/tags"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Model/offers"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="offers.ecore#//Named">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Named/name"/>
-    </genClasses>
-    <genClasses ecoreClass="offers.ecore#//Tag"/>
-    <genClasses ecoreClass="offers.ecore#//Product">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//Product/tags"/>
-    </genClasses>
     <genClasses ecoreClass="offers.ecore#//Category">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Category/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Category/subcategories"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Category/products"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Category/tags"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//Category/tags"/>
+    </genClasses>
+    <genClasses ecoreClass="offers.ecore#//Product">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Product/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//Product/tags"/>
+    </genClasses>
+    <genClasses ecoreClass="offers.ecore#//Tag">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Tag/name"/>
     </genClasses>
     <genClasses ecoreClass="offers.ecore#//Offer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Offer/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Offer/conditions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Offer/actions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference offers.ecore#//Offer/triggers"/>
     </genClasses>
-    <genClasses ecoreClass="offers.ecore#//OfferTrigger">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//OfferTrigger/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//OfferTrigger/to"/>
+    <genClasses ecoreClass="offers.ecore#//Trigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Trigger/triggerType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//Trigger/offer"/>
     </genClasses>
     <genClasses image="false" ecoreClass="offers.ecore#//Condition"/>
-    <genClasses ecoreClass="offers.ecore#//QuantityProductWithTags">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//QuantityProductWithTags/productTags"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//QuantityProductWithTags/cmpOperator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//QuantityProductWithTags/count"/>
+    <genClasses ecoreClass="offers.ecore#//TaggedCondition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//TaggedCondition/tags"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//TaggedCondition/comparison"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//TaggedCondition/quantity"/>
     </genClasses>
-    <genClasses ecoreClass="offers.ecore#//QuantityProducts">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//QuantityProducts/products"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//QuantityProducts/cmpOperator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//QuantityProducts/count"/>
+    <genClasses ecoreClass="offers.ecore#//ProductCondition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//ProductCondition/product"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//ProductCondition/comparison"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//ProductCondition/quantity"/>
     </genClasses>
-    <genClasses ecoreClass="offers.ecore#//DailyOrderCountProduct">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//DailyOrderCountProduct/product"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//DailyOrderCountProduct/cmpOperator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//DailyOrderCountProduct/threshold"/>
+    <genClasses ecoreClass="offers.ecore#//DailyOrderCondition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//DailyOrderCondition/product"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//DailyOrderCondition/comparison"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//DailyOrderCondition/threshold"/>
     </genClasses>
-    <genClasses ecoreClass="offers.ecore#//OrderTotal">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//OrderTotal/cmpOperator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//OrderTotal/threshold"/>
+    <genClasses ecoreClass="offers.ecore#//PriceCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//PriceCondition/price"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//PriceCondition/comparison"/>
     </genClasses>
-    <genClasses ecoreClass="offers.ecore#//DateRange">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//DateRange/from"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//DateRange/to"/>
+    <genClasses ecoreClass="offers.ecore#//DateRangeCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//DateRangeCondition/startDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//DateRangeCondition/endDate"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="offers.ecore#//Action"/>
-    <genClasses image="false" ecoreClass="offers.ecore#//ApplyDiscount">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//ApplyDiscount/amountDiscount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//ApplyDiscount/percentageDiscount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//ApplyDiscount/quantityDiscount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//ApplyDiscount/setTotal"/>
+    <genClasses image="false" ecoreClass="offers.ecore#//Action">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Action/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Action/percentageDiscount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Action/quantityDiscount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Action/priceDiscount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute offers.ecore#//Action/setPrice"/>
     </genClasses>
-    <genClasses ecoreClass="offers.ecore#//DiscountProductWithTags">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//DiscountProductWithTags/tags"/>
+    <genClasses ecoreClass="offers.ecore#//TaggedDiscount">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//TaggedDiscount/tags"/>
     </genClasses>
-    <genClasses ecoreClass="offers.ecore#//DiscountProduct">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//DiscountProduct/product"/>
+    <genClasses ecoreClass="offers.ecore#//ProductDiscount">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference offers.ecore#//ProductDiscount/product"/>
     </genClasses>
-    <genClasses ecoreClass="offers.ecore#//DiscountOrderTotal"/>
+    <genClasses ecoreClass="offers.ecore#//OrderDiscount"/>
   </genPackages>
 </genmodel:GenModel>

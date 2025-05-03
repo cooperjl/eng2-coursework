@@ -1,14 +1,101 @@
-// You should customise the URI, replacing 202425 with your examination number.
-//
-// You will need to set the namespaceURI in the uk.ac.york.cs.eng2.offers.evl/plugin.xml to the same URI.
-
 @namespace(uri="http://cs.york.ac.uk/eng2/202425/offers", prefix="dis")
 package offers;
 
-// Placeholder class to generate some code - replace from here on with your metamodel.
-//
-// You may want to delete the old generated code in src/ before generating code from the .genmodel.
-
 class Model {
-	
+	val Product[*] products;
+	val Category[*] categories;
+	val Tag[*] tags;
+	val Offer[*] offers;
+}
+
+class Category {
+	attr String name;
+	val Category[*] subcategories;
+	ref Product[*] products;
+	ref Tag[*] tags;
+}
+
+class Product {
+	attr String name;
+	ref Tag[*] tags;
+}
+
+class Tag {
+	attr String name;
+}
+
+class Offer {
+	attr String name;
+	val Condition[*] conditions;
+	val Action[+] actions;
+	val Trigger[0..2] triggers;
+}
+
+enum TriggerType {
+	IF_MATCH;
+	IF_NOT_MATCH;
+	ALWAYS;
+}
+
+class Trigger {
+	attr TriggerType triggerType;
+	ref Offer offer;
+}
+
+enum Comparison {
+	EQUAL;
+	NOT_EQUAL;
+	LESS_THAN;
+	LESS_THAN_EQUAL;
+	GREATER_THAN;
+	GREATER_THAN_EQUAL;
+}
+
+abstract class Condition {}
+
+class TaggedCondition extends Condition {
+	ref Tag[+] tags;
+	attr Comparison comparison;
+	attr int quantity;
+}
+
+class ProductCondition extends Condition {
+	ref Product product;
+	attr Comparison comparison;
+	attr int quantity;
+}
+
+class DailyOrderCondition extends Condition {
+	ref Product product;
+	attr Comparison comparison;
+	attr int threshold;
+}
+
+class PriceCondition extends Condition {
+	attr float price;
+	attr Comparison comparison;
+}
+
+class DateRangeCondition extends Condition {
+	attr Date startDate;
+	attr Date endDate;
+}
+
+abstract class Action {
+	attr String name;
+	attr float percentageDiscount;
+	attr int quantityDiscount;
+	attr float priceDiscount;
+	attr float setPrice;
+}
+
+class TaggedDiscount extends Action {
+	ref Tag[+] tags;
+}
+
+class ProductDiscount extends Action {
+	ref Product product;
+}
+
+class OrderDiscount extends Action {
 }

@@ -31,6 +31,123 @@ public interface OffersFactory extends EFactory {
 	Model createModel();
 
 	/**
+	 * Returns a new object of class '<em>Category</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Category</em>'.
+	 * @generated
+	 */
+	Category createCategory();
+
+	/**
+	 * Returns a new object of class '<em>Product</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product</em>'.
+	 * @generated
+	 */
+	Product createProduct();
+
+	/**
+	 * Returns a new object of class '<em>Tag</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tag</em>'.
+	 * @generated
+	 */
+	Tag createTag();
+
+	/**
+	 * Returns a new object of class '<em>Offer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Offer</em>'.
+	 * @generated
+	 */
+	Offer createOffer();
+
+	/**
+	 * Returns a new object of class '<em>Trigger</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Trigger</em>'.
+	 * @generated
+	 */
+	Trigger createTrigger();
+
+	/**
+	 * Returns a new object of class '<em>Tagged Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tagged Condition</em>'.
+	 * @generated
+	 */
+	TaggedCondition createTaggedCondition();
+
+	/**
+	 * Returns a new object of class '<em>Product Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product Condition</em>'.
+	 * @generated
+	 */
+	ProductCondition createProductCondition();
+
+	/**
+	 * Returns a new object of class '<em>Daily Order Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Daily Order Condition</em>'.
+	 * @generated
+	 */
+	DailyOrderCondition createDailyOrderCondition();
+
+	/**
+	 * Returns a new object of class '<em>Price Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Price Condition</em>'.
+	 * @generated
+	 */
+	PriceCondition createPriceCondition();
+
+	/**
+	 * Returns a new object of class '<em>Date Range Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Date Range Condition</em>'.
+	 * @generated
+	 */
+	DateRangeCondition createDateRangeCondition();
+
+	/**
+	 * Returns a new object of class '<em>Tagged Discount</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tagged Discount</em>'.
+	 * @generated
+	 */
+	TaggedDiscount createTaggedDiscount();
+
+	/**
+	 * Returns a new object of class '<em>Product Discount</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Product Discount</em>'.
+	 * @generated
+	 */
+	ProductDiscount createProductDiscount();
+
+	/**
+	 * Returns a new object of class '<em>Order Discount</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Order Discount</em>'.
+	 * @generated
+	 */
+	OrderDiscount createOrderDiscount();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
