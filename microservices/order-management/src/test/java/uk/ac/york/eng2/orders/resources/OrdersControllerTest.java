@@ -10,18 +10,17 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.orders.domain.Customer;
-import uk.ac.york.eng2.orders.domain.Orders;
+import uk.ac.york.eng2.orders.domain.Order;
 import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
 import uk.ac.york.eng2.orders.dto.OrderItemCreateDTO;
 import uk.ac.york.eng2.orders.product_management.api.PricingApi;
-import uk.ac.york.eng2.orders.product_management.api.ProductsApi;
 import uk.ac.york.eng2.orders.product_management.model.OrderItemPricingCreateDTO;
 import uk.ac.york.eng2.orders.product_management.model.OrderItemPricingDTO;
 import uk.ac.york.eng2.orders.product_management.model.OrderPricingCreateDTO;
 import uk.ac.york.eng2.orders.product_management.model.OrderPricingDTO;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrderItemRepository;
-import uk.ac.york.eng2.orders.repository.OrdersRepository;
+import uk.ac.york.eng2.orders.repository.OrderRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class OrdersControllerTest {
     @Inject
     private OrdersClient client;
     @Inject
-    private OrdersRepository repository;
+    private OrderRepository repository;
     @Inject
     private CustomerRepository customerRepository;
     @Inject
@@ -134,7 +133,7 @@ public class OrdersControllerTest {
         dto.setCustomerId(customerId);
 
         long orderId = createGetId(dto);
-        Orders order = client.get(orderId);
+        Order order = client.get(orderId);
 
         assertEquals(dto.getAddress(), order.getAddress());
         assertEquals(dto.getCustomerId(), client.getCustomer(orderId).getId());
@@ -156,7 +155,7 @@ public class OrdersControllerTest {
         updateDTO.setAddress("1 Second Street");
 
         client.update(orderId, updateDTO);
-        Orders order = client.get(orderId);
+        Order order = client.get(orderId);
 
         assertEquals(updateDTO.getAddress(), order.getAddress());
     }
@@ -194,7 +193,7 @@ public class OrdersControllerTest {
 
         client.updateDelivered(orderId, true);
         client.updatePaid(orderId, true);
-        Orders order = client.get(orderId);
+        Order order = client.get(orderId);
 
         assertEquals(true, order.getDelivered());
         assertEquals(true, order.getPaid());

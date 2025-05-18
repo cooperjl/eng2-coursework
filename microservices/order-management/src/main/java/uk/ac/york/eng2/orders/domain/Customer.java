@@ -27,13 +27,13 @@ public class Customer {
 
     @JsonIgnore
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private Set<Orders> orders = Collections.emptySet();
+    private Set<Order> orders = Collections.emptySet();
 
-    public Set<Orders> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Orders> orders) {
+    public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
 

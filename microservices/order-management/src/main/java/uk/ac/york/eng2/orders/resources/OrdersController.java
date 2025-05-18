@@ -13,19 +13,17 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.OrderItem;
-import uk.ac.york.eng2.orders.domain.Orders;
+import uk.ac.york.eng2.orders.domain.Order;
 import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
 import uk.ac.york.eng2.orders.events.OrderEventProducer;
 import uk.ac.york.eng2.orders.events.OrderInfo;
 import uk.ac.york.eng2.orders.gateways.ProductPricingGateway;
 import uk.ac.york.eng2.orders.product_management.model.OrderItemPricingDTO;
-import uk.ac.york.eng2.orders.product_management.model.OrderPricingCreateDTO;
 import uk.ac.york.eng2.orders.product_management.model.OrderPricingDTO;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrderItemRepository;
-import uk.ac.york.eng2.orders.repository.OrdersRepository;
+import uk.ac.york.eng2.orders.repository.OrderRepository;
 
-import java.math.BigDecimal;
 import java.net.URI;
 import java.sql.Date;
 
@@ -36,7 +34,7 @@ public class OrdersController {
     public static final String PREFIX = "/orders";
 
     @Inject
-    private OrdersRepository repository;
+    private OrderRepository repository;
     @Inject
     private CustomerRepository customerRepository;
     @Inject
@@ -46,7 +44,7 @@ public class OrdersController {
     @Inject
     private ProductPricingGateway gateway;
 
-    private Orders dtoToOrder(OrderCreateDTO dto, Orders order) {
+    private Order dtoToOrder(OrderCreateDTO dto, Order order) {
         Customer customer = customerRepository.findById(dto.getCustomerId())
                 .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Customer not found"));
 
@@ -72,12 +70,12 @@ public class OrdersController {
     }
 
     @Get("/{?page}")
-    public Page<Orders> list(@QueryValue(defaultValue = "0") int page) {
+    public Page<Order> list(@QueryValue(defaultValue = "0") int page) {
         return repository.findAll(Pageable.from(page));
     }
 
     @Get("/{id}")
-    public Orders get(@PathVariable long id) {
+    public Order get(@PathVariable long id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -94,7 +92,7 @@ public class OrdersController {
     @Transactional
     @Post
     public HttpResponse<Object> create(@Body OrderCreateDTO dto) {
-        Orders order = new Orders();
+        Order order = new Order();
         order = dtoToOrder(dto, order);
         Date day = order.getDateCreated();
 
@@ -109,7 +107,7 @@ public class OrdersController {
     @Transactional
     @Put("/{id}")
     public void update(@PathVariable long id, @Body OrderCreateDTO dto) {
-        Orders order = repository.findById(id)
+        Order order = repository.findById(id)
                 .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found"));
 
         dtoToOrder(dto, order);
@@ -118,7 +116,7 @@ public class OrdersController {
     @Transactional
     @Put("/{id}/delivered")
     public void updateDelivered(@PathVariable long id, @Body boolean delivered) {
-        Orders order = repository.findById(id)
+        Order order = repository.findById(id)
                 .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found"));
 
         order.setDelivered(delivered);
@@ -128,7 +126,7 @@ public class OrdersController {
     @Transactional
     @Put("/{id}/paid")
     public void updatePaid(@PathVariable long id, @Body boolean paid) {
-        Orders order = repository.findById(id)
+        Order order = repository.findById(id)
                 .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Order not found"));
 
         order.setPaid(paid);

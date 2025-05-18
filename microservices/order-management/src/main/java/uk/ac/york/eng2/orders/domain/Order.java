@@ -11,9 +11,9 @@ import java.util.Collections;
 import java.util.Set;
 
 @Serdeable
-@Entity
-public class Orders {
-    public Orders() {}
+@Entity(name = "orders")
+public class Order {
+    public Order() {}
 
     @GeneratedValue
     @Id

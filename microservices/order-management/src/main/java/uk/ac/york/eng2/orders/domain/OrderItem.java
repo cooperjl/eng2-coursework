@@ -18,7 +18,7 @@ public class OrderItem {
 
     @JsonIgnore
     @ManyToOne
-    private Orders order;
+    private Order order;
 
     @Column
     private Integer quantity;
@@ -49,11 +49,11 @@ public class OrderItem {
         this.productId = productId;
     }
 
-    public Orders getOrder() {
+    public Order getOrder() {
         return order;
     }
 
-    public void setOrder(Orders order) {
+    public void setOrder(Order order) {
         this.order = order;
     }
 

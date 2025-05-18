@@ -11,10 +11,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.orders.domain.Customer;
-import uk.ac.york.eng2.orders.domain.Orders;
+import uk.ac.york.eng2.orders.domain.Order;
 import uk.ac.york.eng2.orders.dto.CustomerCreateDTO;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
-import uk.ac.york.eng2.orders.repository.OrdersRepository;
+import uk.ac.york.eng2.orders.repository.OrderRepository;
 
 import java.net.URI;
 import java.util.List;
@@ -27,7 +27,7 @@ public class CustomersController {
     @Inject
     private CustomerRepository repository;
     @Inject
-    private OrdersRepository ordersRepository;
+    private OrderRepository orderRepository;
 
     private Customer dtoToCustomer(CustomerCreateDTO dto, Customer customer) {
         customer.setEmail(dto.getEmail());
@@ -49,8 +49,8 @@ public class CustomersController {
     }
 
     @Get("/{id}/orders")
-    public List<Orders> listOrders(@PathVariable long id) {
-        return ordersRepository.findByCustomerId(id);
+    public List<Order> listOrders(@PathVariable long id) {
+        return orderRepository.findByCustomerId(id);
     }
 
     @Post

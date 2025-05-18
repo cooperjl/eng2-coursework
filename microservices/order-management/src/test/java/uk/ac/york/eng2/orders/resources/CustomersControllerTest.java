@@ -8,10 +8,10 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.orders.domain.Customer;
-import uk.ac.york.eng2.orders.domain.Orders;
+import uk.ac.york.eng2.orders.domain.Order;
 import uk.ac.york.eng2.orders.dto.CustomerCreateDTO;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
-import uk.ac.york.eng2.orders.repository.OrdersRepository;
+import uk.ac.york.eng2.orders.repository.OrderRepository;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -28,7 +28,7 @@ public class CustomersControllerTest {
     @Inject
     private CustomerRepository repository;
     @Inject
-    private OrdersRepository ordersRepository;
+    private OrderRepository orderRepository;
 
     @BeforeEach
     public void setup() {
@@ -113,7 +113,7 @@ public class CustomersControllerTest {
         long customerId = createGetId(dto);
         Customer customer = client.get(customerId);
 
-        Orders order = new Orders();
+        Order order = new Order();
         order.setCustomer(customer);
         order.setAddress("123 Test Lane");
         order.setPaid(false);
@@ -122,9 +122,9 @@ public class CustomersControllerTest {
         order.setDateCreated(new Date(System.currentTimeMillis()));
         order.setOrderItems(new HashSet<>());
 
-        long orderId = ordersRepository.save(order).getId();
+        long orderId = orderRepository.save(order).getId();
 
-        List<Orders> orders = client.listOrders(customerId);
+        List<Order> orders = client.listOrders(customerId);
 
         assertEquals(1, orders.size());
         assertEquals(orderId, orders.get(0).getId());

@@ -6,16 +6,16 @@ import io.micronaut.http.annotation.*;
 import io.micronaut.http.client.annotation.Client;
 import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.OrderItem;
-import uk.ac.york.eng2.orders.domain.Orders;
+import uk.ac.york.eng2.orders.domain.Order;
 import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
 
 @Client(OrdersController.PREFIX)
 public interface OrdersClient {
     @Get
-    Page<Orders> list();
+    Page<Order> list();
 
     @Get("/{id}")
-    Orders get(@PathVariable long id);
+    Order get(@PathVariable long id);
 
     @Get("/{id}/customer")
     Customer getCustomer(@PathVariable long id);
