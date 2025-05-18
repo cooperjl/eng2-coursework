@@ -3,6 +3,24 @@ info:
   title: product-management
   version: "1.0"
 paths:
+  /pricing:
+    post:
+      tags:
+      - pricing
+      operationId: getPrices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderPricingCreateDTO"
+        required: true
+      responses:
+        "200":
+          description: getPrices 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderPricingDTO"
   /products:
     get:
       tags:
@@ -122,32 +140,6 @@ paths:
                 additionalProperties:
                   type: integer
                   format: int32
-  /products/{id}/price/{quantity}:
-    get:
-      tags:
-      - products
-      operationId: getPrices
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      - name: quantity
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int32
-          default: 1
-      responses:
-        "200":
-          description: getPrices 200 response
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Prices"
   /products/{id}/tags:
     get:
       tags:
@@ -323,6 +315,48 @@ paths:
                   $ref: "#/components/schemas/Product"
 components:
   schemas:
+    OrderItemPricingCreateDTO:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+    OrderItemPricingDTO:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+        unitPrice:
+          type: number
+    OrderPricingCreateDTO:
+      type: object
+      properties:
+        dateCreated:
+          type: string
+          format: date
+        orderItems:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrderItemPricingCreateDTO"
+    OrderPricingDTO:
+      type: object
+      properties:
+        dateCreated:
+          type: string
+          format: date
+        totalAmount:
+          type: number
+        orderItems:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrderItemPricingDTO"
     Page_Product_:
       type: object
       allOf:
@@ -369,16 +403,6 @@ components:
       - CURSOR_NEXT
       - CURSOR_PREVIOUS
       - OFFSET
-    Prices:
-      required:
-      - totalPrice
-      - unitPrice
-      type: object
-      properties:
-        unitPrice:
-          type: number
-        totalPrice:
-          type: number
     Product:
       type: object
       properties:

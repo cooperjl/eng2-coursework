@@ -12,7 +12,6 @@ class Category {
 	attr String name;
 	val Category[*] subcategories;
 	ref Product[*] products;
-	ref Tag[*] tags;
 }
 
 class Product {
@@ -31,14 +30,14 @@ class Offer {
 	val Trigger[0..2] triggers;
 }
 
-enum TriggerType {
+enum TriggerOn {
+	ALWAYS;
 	IF_MATCH;
 	IF_NOT_MATCH;
-	ALWAYS;
 }
 
 class Trigger {
-	attr TriggerType triggerType;
+	attr TriggerOn triggerOn;
 	ref Offer offer;
 }
 
@@ -51,18 +50,16 @@ enum Comparison {
 	GREATER_THAN_EQUAL;
 }
 
-abstract class Condition {}
+abstract class Condition {
+	attr String name;
+}
 
 class TaggedCondition extends Condition {
 	ref Tag[+] tags;
-	attr Comparison comparison;
-	attr int quantity;
 }
 
 class ProductCondition extends Condition {
 	ref Product product;
-	attr Comparison comparison;
-	attr int quantity;
 }
 
 class DailyOrderCondition extends Condition {
@@ -84,16 +81,17 @@ class DateRangeCondition extends Condition {
 abstract class Action {
 	attr String name;
 	attr float percentageDiscount;
-	attr int quantityDiscount;
 	attr float priceDiscount;
 	attr float setPrice;
 }
 
 class TaggedDiscount extends Action {
+	attr int quantityDiscount;
 	ref Tag[+] tags;
 }
 
 class ProductDiscount extends Action {
+	attr int quantityDiscount;
 	ref Product product;
 }
 

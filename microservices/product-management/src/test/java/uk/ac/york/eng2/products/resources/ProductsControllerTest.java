@@ -5,13 +5,11 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.products.domain.OrdersByDay;
 import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.domain.Tag;
-import uk.ac.york.eng2.products.dto.Prices;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
@@ -114,26 +112,6 @@ public class ProductsControllerTest {
     }
 
     @Test
-    public void getUnitPrice() {
-        ProductCreateDTO dto = createDTO();
-        long productId = createGetId(dto);
-
-        Prices prices = client.getPrices(productId, 1);
-
-        assertThat(dto.getUnitPrice(), Matchers.comparesEqualTo(prices.unitPrice()));
-    }
-
-    @Test
-    public void getTotalPrice() {
-        ProductCreateDTO dto = createDTO();
-        long productId = createGetId(dto);
-
-        Prices prices = client.getPrices(productId, 5);
-
-        assertThat(BigDecimal.valueOf(5).multiply(dto.getUnitPrice()), Matchers.comparesEqualTo(prices.totalPrice()));
-    }
-
-    @Test
     public void listTags() {
         Tag tag = new Tag();
         tag.setName("Test Tag");
@@ -141,6 +119,11 @@ public class ProductsControllerTest {
 
         ProductCreateDTO dto = createDTO();
         long productId = createGetId(dto);
+
+        // Ensure not found responses from incorrect product or tag ids
+        assertEquals(HttpStatus.NOT_FOUND, client.addProductTag(productId, 77L).getStatus());
+        assertEquals(HttpStatus.NOT_FOUND, client.addProductTag(32L, tag.getId()).getStatus());
+
         client.addProductTag(productId, tag.getId());
         List<Tag> productTags = client.listTags(productId);
 

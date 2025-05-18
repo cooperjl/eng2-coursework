@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import uk.ac.york.cs.eng2.offers.Offer;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
 import uk.ac.york.cs.eng2.offers.Trigger;
-import uk.ac.york.cs.eng2.offers.TriggerType;
+import uk.ac.york.cs.eng2.offers.TriggerOn;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +23,7 @@ import uk.ac.york.cs.eng2.offers.TriggerType;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.TriggerImpl#getTriggerType <em>Trigger Type</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.impl.TriggerImpl#getTriggerOn <em>Trigger On</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.TriggerImpl#getOffer <em>Offer</em>}</li>
  * </ul>
  *
@@ -31,24 +31,24 @@ import uk.ac.york.cs.eng2.offers.TriggerType;
  */
 public class TriggerImpl extends MinimalEObjectImpl.Container implements Trigger {
 	/**
-	 * The default value of the '{@link #getTriggerType() <em>Trigger Type</em>}' attribute.
+	 * The default value of the '{@link #getTriggerOn() <em>Trigger On</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTriggerType()
+	 * @see #getTriggerOn()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final TriggerType TRIGGER_TYPE_EDEFAULT = TriggerType.IF_MATCH;
+	protected static final TriggerOn TRIGGER_ON_EDEFAULT = TriggerOn.ALWAYS;
 
 	/**
-	 * The cached value of the '{@link #getTriggerType() <em>Trigger Type</em>}' attribute.
+	 * The cached value of the '{@link #getTriggerOn() <em>Trigger On</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTriggerType()
+	 * @see #getTriggerOn()
 	 * @generated
 	 * @ordered
 	 */
-	protected TriggerType triggerType = TRIGGER_TYPE_EDEFAULT;
+	protected TriggerOn triggerOn = TRIGGER_ON_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOffer() <em>Offer</em>}' reference.
@@ -85,8 +85,8 @@ public class TriggerImpl extends MinimalEObjectImpl.Container implements Trigger
 	 * @generated
 	 */
 	@Override
-	public TriggerType getTriggerType() {
-		return triggerType;
+	public TriggerOn getTriggerOn() {
+		return triggerOn;
 	}
 
 	/**
@@ -95,11 +95,11 @@ public class TriggerImpl extends MinimalEObjectImpl.Container implements Trigger
 	 * @generated
 	 */
 	@Override
-	public void setTriggerType(TriggerType newTriggerType) {
-		TriggerType oldTriggerType = triggerType;
-		triggerType = newTriggerType == null ? TRIGGER_TYPE_EDEFAULT : newTriggerType;
+	public void setTriggerOn(TriggerOn newTriggerOn) {
+		TriggerOn oldTriggerOn = triggerOn;
+		triggerOn = newTriggerOn == null ? TRIGGER_ON_EDEFAULT : newTriggerOn;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.TRIGGER__TRIGGER_TYPE, oldTriggerType, triggerType));
+			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.TRIGGER__TRIGGER_ON, oldTriggerOn, triggerOn));
 	}
 
 	/**
@@ -150,8 +150,8 @@ public class TriggerImpl extends MinimalEObjectImpl.Container implements Trigger
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OffersPackage.TRIGGER__TRIGGER_TYPE:
-				return getTriggerType();
+			case OffersPackage.TRIGGER__TRIGGER_ON:
+				return getTriggerOn();
 			case OffersPackage.TRIGGER__OFFER:
 				if (resolve) return getOffer();
 				return basicGetOffer();
@@ -167,8 +167,8 @@ public class TriggerImpl extends MinimalEObjectImpl.Container implements Trigger
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OffersPackage.TRIGGER__TRIGGER_TYPE:
-				setTriggerType((TriggerType)newValue);
+			case OffersPackage.TRIGGER__TRIGGER_ON:
+				setTriggerOn((TriggerOn)newValue);
 				return;
 			case OffersPackage.TRIGGER__OFFER:
 				setOffer((Offer)newValue);
@@ -185,8 +185,8 @@ public class TriggerImpl extends MinimalEObjectImpl.Container implements Trigger
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OffersPackage.TRIGGER__TRIGGER_TYPE:
-				setTriggerType(TRIGGER_TYPE_EDEFAULT);
+			case OffersPackage.TRIGGER__TRIGGER_ON:
+				setTriggerOn(TRIGGER_ON_EDEFAULT);
 				return;
 			case OffersPackage.TRIGGER__OFFER:
 				setOffer((Offer)null);
@@ -203,8 +203,8 @@ public class TriggerImpl extends MinimalEObjectImpl.Container implements Trigger
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OffersPackage.TRIGGER__TRIGGER_TYPE:
-				return triggerType != TRIGGER_TYPE_EDEFAULT;
+			case OffersPackage.TRIGGER__TRIGGER_ON:
+				return triggerOn != TRIGGER_ON_EDEFAULT;
 			case OffersPackage.TRIGGER__OFFER:
 				return offer != null;
 		}
@@ -221,8 +221,8 @@ public class TriggerImpl extends MinimalEObjectImpl.Container implements Trigger
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (triggerType: ");
-		result.append(triggerType);
+		result.append(" (triggerOn: ");
+		result.append(triggerOn);
 		result.append(')');
 		return result.toString();
 	}

@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Action#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Action#getPercentageDiscount <em>Percentage Discount</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.Action#getQuantityDiscount <em>Quantity Discount</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Action#getPriceDiscount <em>Price Discount</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Action#getSetPrice <em>Set Price</em>}</li>
  * </ul>
@@ -68,28 +67,6 @@ public interface Action extends EObject {
 	 * @generated
 	 */
 	void setPercentageDiscount(float value);
-
-	/**
-	 * Returns the value of the '<em><b>Quantity Discount</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Quantity Discount</em>' attribute.
-	 * @see #setQuantityDiscount(int)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getAction_QuantityDiscount()
-	 * @model
-	 * @generated
-	 */
-	int getQuantityDiscount();
-
-	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.Action#getQuantityDiscount <em>Quantity Discount</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Quantity Discount</em>' attribute.
-	 * @see #getQuantityDiscount()
-	 * @generated
-	 */
-	void setQuantityDiscount(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Price Discount</b></em>' attribute.

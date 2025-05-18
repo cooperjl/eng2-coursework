@@ -1,3 +1,41 @@
-/*
- * Write your EGX rules here: template paths should be relative to the .egx folder.
- */
+rule ModelToJava
+	transform m : Model {
+	
+	template : "modeltojava.egl"
+	
+	parameters: Map {}
+	
+	target: "OfferRules.java"
+}
+
+rule OfferToJava
+	transform o : Offer {
+	
+	template : "offertojava.egl"
+	
+	parameters : Map {}
+	
+	target : o.name + ".java"
+}
+
+@greedy
+rule ConditionToJava
+	transform c : Condition {
+	
+	template : "conditiontojava.egl"
+	
+	parameters : Map {}
+	
+	target : "conditions/" + c.name + ".java"
+}
+
+@greedy
+rule ActionToJava
+	transform a : Action {
+	
+	template : "actiontojava.egl"
+	
+	parameters : Map {}
+	
+	target : "actions/" + a.name + ".java"
+}

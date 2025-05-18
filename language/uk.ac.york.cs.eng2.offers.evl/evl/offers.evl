@@ -41,16 +41,16 @@ context Model {
 context Offer {
 	constraint TriggerAtMostOne {
 		check {
-			var triggerTypes = self.triggers.triggerType;
-			return triggerTypes.size() == triggerTypes.asSet().size();
+			var triggerOns = self.triggers.triggerOn;
+			return triggerOns.size() == triggerOns.asSet().size();
 		}
 		message: "Offer rule has multiple triggers of the same type"
 	}
 	constraint AlwaysIsExclusive {
 		guard: self.satisfies("TriggerAtMostOne")
 		check {
-			if (self.triggers.triggerType.exists(t | t == TriggerType#ALWAYS)) {
-				return self.triggers.triggerType.size() == 1;
+			if (self.triggers.triggerOn.exists(t | t == TriggerOn#ALWAYS)) {
+				return self.triggers.triggerOn.size() == 1;
 			}
 			return true;
 		}

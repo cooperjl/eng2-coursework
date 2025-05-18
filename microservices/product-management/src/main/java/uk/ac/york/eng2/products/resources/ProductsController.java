@@ -12,7 +12,6 @@ import jakarta.transaction.Transactional;
 import uk.ac.york.eng2.products.domain.OrdersByDay;
 import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.domain.Tag;
-import uk.ac.york.eng2.products.dto.Prices;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 import uk.ac.york.eng2.products.repository.OrdersByDayRepository;
 import uk.ac.york.eng2.products.repository.ProductRepository;
@@ -61,16 +60,6 @@ public class ProductsController {
         }
 
         return stats;
-    }
-
-    @Get("/{id}/price/{quantity}")
-    public Prices getPrices(@PathVariable long id, @PathVariable(defaultValue = "1") int quantity) {
-        Product product = repository.findById(id)
-                .orElseThrow(() -> new HttpStatusException(HttpStatus.NOT_FOUND, "Product not found"));
-
-        BigDecimal unitPrice = product.getUnitPrice();
-
-        return new Prices(unitPrice, unitPrice.multiply(BigDecimal.valueOf(quantity)));
     }
 
     @Post

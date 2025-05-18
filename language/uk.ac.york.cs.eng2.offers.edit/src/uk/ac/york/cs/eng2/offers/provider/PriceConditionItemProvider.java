@@ -114,8 +114,10 @@ public class PriceConditionItemProvider extends ConditionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		PriceCondition priceCondition = (PriceCondition)object;
-		return getString("_UI_PriceCondition_type") + " " + priceCondition.getPrice();
+		String label = ((PriceCondition)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PriceCondition_type") :
+			getString("_UI_PriceCondition_type") + " " + label;
 	}
 
 

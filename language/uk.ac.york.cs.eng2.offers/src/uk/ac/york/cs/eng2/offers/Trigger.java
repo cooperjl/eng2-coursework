@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.cs.eng2.offers.Trigger#getTriggerType <em>Trigger Type</em>}</li>
+ *   <li>{@link uk.ac.york.cs.eng2.offers.Trigger#getTriggerOn <em>Trigger On</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Trigger#getOffer <em>Offer</em>}</li>
  * </ul>
  *
@@ -23,29 +23,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Trigger extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Trigger Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link uk.ac.york.cs.eng2.offers.TriggerType}.
+	 * Returns the value of the '<em><b>Trigger On</b></em>' attribute.
+	 * The literals are from the enumeration {@link uk.ac.york.cs.eng2.offers.TriggerOn}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Trigger Type</em>' attribute.
-	 * @see uk.ac.york.cs.eng2.offers.TriggerType
-	 * @see #setTriggerType(TriggerType)
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getTrigger_TriggerType()
+	 * @return the value of the '<em>Trigger On</em>' attribute.
+	 * @see uk.ac.york.cs.eng2.offers.TriggerOn
+	 * @see #setTriggerOn(TriggerOn)
+	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getTrigger_TriggerOn()
 	 * @model
 	 * @generated
 	 */
-	TriggerType getTriggerType();
+	TriggerOn getTriggerOn();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.Trigger#getTriggerType <em>Trigger Type</em>}' attribute.
+	 * Sets the value of the '{@link uk.ac.york.cs.eng2.offers.Trigger#getTriggerOn <em>Trigger On</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Trigger Type</em>' attribute.
-	 * @see uk.ac.york.cs.eng2.offers.TriggerType
-	 * @see #getTriggerType()
+	 * @param value the new value of the '<em>Trigger On</em>' attribute.
+	 * @see uk.ac.york.cs.eng2.offers.TriggerOn
+	 * @see #getTriggerOn()
 	 * @generated
 	 */
-	void setTriggerType(TriggerType value);
+	void setTriggerOn(TriggerOn value);
 
 	/**
 	 * Returns the value of the '<em><b>Offer</b></em>' reference.

@@ -15,11 +15,12 @@ import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.OrderItem;
 import uk.ac.york.eng2.orders.domain.Orders;
 import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
-import uk.ac.york.eng2.orders.dto.OrderItemCreateDTO;
 import uk.ac.york.eng2.orders.events.OrderEventProducer;
 import uk.ac.york.eng2.orders.events.OrderInfo;
 import uk.ac.york.eng2.orders.gateways.ProductPricingGateway;
-import uk.ac.york.eng2.orders.gateways.ProductPricingInfo;
+import uk.ac.york.eng2.orders.product_management.model.OrderItemPricingDTO;
+import uk.ac.york.eng2.orders.product_management.model.OrderPricingCreateDTO;
+import uk.ac.york.eng2.orders.product_management.model.OrderPricingDTO;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrderItemRepository;
 import uk.ac.york.eng2.orders.repository.OrdersRepository;
@@ -27,7 +28,6 @@ import uk.ac.york.eng2.orders.repository.OrdersRepository;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.sql.Date;
-import java.util.Optional;
 
 @Tag(name = "orders")
 @ExecuteOn(TaskExecutors.BLOCKING)
@@ -55,27 +55,19 @@ public class OrdersController {
         order.setDateCreated(new Date(System.currentTimeMillis()));
         order.setDelivered(false);
         order.setPaid(false);
-        order.setTotalAmount(BigDecimal.ZERO);
 
+        OrderPricingDTO orderPricing = gateway.getPricedOrder(dto, order.getDateCreated())
+                .orElseThrow(() -> new HttpStatusException(HttpStatus.BAD_REQUEST, "Pricing info unable to be retrieved from product microservice"));
+        order.setTotalAmount(orderPricing.getTotalAmount());
         order = repository.save(order);
 
-        BigDecimal totalPrice = BigDecimal.ZERO;
-
-        for (OrderItemCreateDTO orderItemDTO : dto.getOrderItems()) {
+        for (OrderItemPricingDTO orderItemDTO : orderPricing.getOrderItems()) {
             OrderItem orderItem = new OrderItem(orderItemDTO.getProductId(), orderItemDTO.getQuantity());
+            orderItem.setUnitPrice(orderItemDTO.getUnitPrice());
             orderItem.setOrder(order);
-            Optional<ProductPricingInfo> optionalInfo = gateway.getPricingInfo(orderItemDTO.getProductId(), orderItemDTO.getQuantity());
-            if (optionalInfo.isEmpty()) {
-                throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Pricing info unable to be retrieved from product microservice");
-            }
-            ProductPricingInfo info = optionalInfo.get();
-            orderItem.setUnitPrice(info.unitPrices());
             orderItemRepository.save(orderItem);
-
-            totalPrice = totalPrice.add(info.totalPrices());
         }
-        order.setTotalAmount(totalPrice);
-        order = repository.save(order);
+        //order = repository.save(order);
         return order;
     }
 

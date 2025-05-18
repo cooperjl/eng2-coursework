@@ -4,7 +4,6 @@ package uk.ac.york.cs.eng2.offers.provider;
 
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -115,8 +114,7 @@ public class DateRangeConditionItemProvider extends ConditionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((DateRangeCondition)object).getStartDate();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((DateRangeCondition)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DateRangeCondition_type") :
 			getString("_UI_DateRangeCondition_type") + " " + label;

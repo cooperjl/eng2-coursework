@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link uk.ac.york.cs.eng2.offers.Category#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Category#getSubcategories <em>Subcategories</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.Category#getProducts <em>Products</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.Category#getTags <em>Tags</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.cs.eng2.offers.OffersPackage#getCategory()
@@ -71,17 +70,5 @@ public interface Category extends EObject {
 	 * @generated
 	 */
 	EList<Product> getProducts();
-
-	/**
-	 * Returns the value of the '<em><b>Tags</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.cs.eng2.offers.Tag}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tags</em>' reference list.
-	 * @see uk.ac.york.cs.eng2.offers.OffersPackage#getCategory_Tags()
-	 * @model
-	 * @generated
-	 */
-	EList<Tag> getTags();
 
 } // Category

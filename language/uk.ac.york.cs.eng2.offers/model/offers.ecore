@@ -17,7 +17,6 @@
         eType="#//Category" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
         eType="#//Product"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tags" upperBound="-1" eType="#//Tag"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Product">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -35,13 +34,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="2"
         eType="#//Trigger" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TriggerType">
-    <eLiterals name="IF_MATCH"/>
-    <eLiterals name="IF_NOT_MATCH" value="1"/>
-    <eLiterals name="ALWAYS" value="2"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="TriggerOn">
+    <eLiterals name="ALWAYS"/>
+    <eLiterals name="IF_MATCH" value="1"/>
+    <eLiterals name="IF_NOT_MATCH" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Trigger">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="triggerType" eType="#//TriggerType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="triggerOn" eType="#//TriggerOn"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="offer" eType="#//Offer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Comparison">
@@ -52,17 +51,15 @@
     <eLiterals name="GREATER_THAN" value="4"/>
     <eLiterals name="GREATER_THAN_EQUAL" value="5"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedCondition" eSuperTypes="#//Condition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="tags" lowerBound="1" upperBound="-1"
         eType="#//Tag"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison" eType="#//Comparison"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductCondition" eSuperTypes="#//Condition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" eType="#//Product"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison" eType="#//Comparison"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DailyOrderCondition" eSuperTypes="#//Condition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" eType="#//Product"/>
@@ -80,15 +77,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentageDiscount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantityDiscount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="priceDiscount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="setPrice" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedDiscount" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantityDiscount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tags" lowerBound="1" upperBound="-1"
         eType="#//Tag"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductDiscount" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantityDiscount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" eType="#//Product"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderDiscount" eSuperTypes="#//Action"/>

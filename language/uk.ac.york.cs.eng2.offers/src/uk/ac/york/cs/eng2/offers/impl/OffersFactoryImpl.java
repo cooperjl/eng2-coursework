@@ -84,8 +84,8 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case OffersPackage.TRIGGER_TYPE:
-				return createTriggerTypeFromString(eDataType, initialValue);
+			case OffersPackage.TRIGGER_ON:
+				return createTriggerOnFromString(eDataType, initialValue);
 			case OffersPackage.COMPARISON:
 				return createComparisonFromString(eDataType, initialValue);
 			default:
@@ -101,8 +101,8 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case OffersPackage.TRIGGER_TYPE:
-				return convertTriggerTypeToString(eDataType, instanceValue);
+			case OffersPackage.TRIGGER_ON:
+				return convertTriggerOnToString(eDataType, instanceValue);
 			case OffersPackage.COMPARISON:
 				return convertComparisonToString(eDataType, instanceValue);
 			default:
@@ -269,8 +269,8 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TriggerType createTriggerTypeFromString(EDataType eDataType, String initialValue) {
-		TriggerType result = TriggerType.get(initialValue);
+	public TriggerOn createTriggerOnFromString(EDataType eDataType, String initialValue) {
+		TriggerOn result = TriggerOn.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -280,7 +280,7 @@ public class OffersFactoryImpl extends EFactoryImpl implements OffersFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertTriggerTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertTriggerOnToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -11,10 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import uk.ac.york.cs.eng2.offers.Comparison;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
 import uk.ac.york.cs.eng2.offers.TaggedCondition;
 
@@ -47,8 +44,6 @@ public class TaggedConditionItemProvider extends ConditionItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addTagsPropertyDescriptor(object);
-			addComparisonPropertyDescriptor(object);
-			addQuantityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -76,50 +71,6 @@ public class TaggedConditionItemProvider extends ConditionItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Comparison feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addComparisonPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TaggedCondition_comparison_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TaggedCondition_comparison_feature", "_UI_TaggedCondition_type"),
-				 OffersPackage.Literals.TAGGED_CONDITION__COMPARISON,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Quantity feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addQuantityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TaggedCondition_quantity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TaggedCondition_quantity_feature", "_UI_TaggedCondition_type"),
-				 OffersPackage.Literals.TAGGED_CONDITION__QUANTITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns TaggedCondition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,8 +89,7 @@ public class TaggedConditionItemProvider extends ConditionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		Comparison labelValue = ((TaggedCondition)object).getComparison();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((TaggedCondition)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TaggedCondition_type") :
 			getString("_UI_TaggedCondition_type") + " " + label;
@@ -156,13 +106,6 @@ public class TaggedConditionItemProvider extends ConditionItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(TaggedCondition.class)) {
-			case OffersPackage.TAGGED_CONDITION__COMPARISON:
-			case OffersPackage.TAGGED_CONDITION__QUANTITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

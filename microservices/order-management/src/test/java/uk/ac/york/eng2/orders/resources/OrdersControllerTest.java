@@ -13,19 +13,24 @@ import uk.ac.york.eng2.orders.domain.Customer;
 import uk.ac.york.eng2.orders.domain.Orders;
 import uk.ac.york.eng2.orders.dto.OrderCreateDTO;
 import uk.ac.york.eng2.orders.dto.OrderItemCreateDTO;
+import uk.ac.york.eng2.orders.product_management.api.PricingApi;
 import uk.ac.york.eng2.orders.product_management.api.ProductsApi;
-import uk.ac.york.eng2.orders.product_management.model.Prices;
+import uk.ac.york.eng2.orders.product_management.model.OrderItemPricingCreateDTO;
+import uk.ac.york.eng2.orders.product_management.model.OrderItemPricingDTO;
+import uk.ac.york.eng2.orders.product_management.model.OrderPricingCreateDTO;
+import uk.ac.york.eng2.orders.product_management.model.OrderPricingDTO;
 import uk.ac.york.eng2.orders.repository.CustomerRepository;
 import uk.ac.york.eng2.orders.repository.OrderItemRepository;
 import uk.ac.york.eng2.orders.repository.OrdersRepository;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -48,12 +53,28 @@ public class OrdersControllerTest {
         repository.deleteAll();
     }
 
-    @MockBean(ProductsApi.class)
-    public ProductsApi getProductsApi() {
-        ProductsApi mock = mock(ProductsApi.class);
-        // letting unit price be 1, so total price is just quantity
-        when(mock.getPrices(any(), anyInt())).thenAnswer(
-                i -> new Prices(BigDecimal.ONE, new BigDecimal((int) i.getArgument(1)))
+    @MockBean(PricingApi.class)
+    public PricingApi getPricingApi() {
+        PricingApi mock = mock(PricingApi.class);
+        // letting unit price be 1
+        when(mock.getPrices(any(OrderPricingCreateDTO.class))).thenAnswer(i -> {
+                    OrderPricingCreateDTO dto = i.getArgument(0);
+                    OrderPricingDTO order = new OrderPricingDTO();
+                    List<OrderItemPricingDTO> items = new ArrayList<>();
+                    BigDecimal totalAmount = BigDecimal.ZERO;
+                    for (OrderItemPricingCreateDTO itemDTO : dto.getOrderItems()) {
+                        OrderItemPricingDTO item = new OrderItemPricingDTO();
+                        item.setUnitPrice(BigDecimal.ONE);
+                        item.setQuantity(itemDTO.getQuantity());
+                        item.setProductId(itemDTO.getProductId());
+                        items.add(item);
+                        totalAmount = totalAmount.add(BigDecimal.valueOf(itemDTO.getQuantity()));
+                    }
+                    order.setOrderItems(items);
+                    order.setTotalAmount(totalAmount);
+                    order.setDateCreated(dto.getDateCreated());
+                    return order;
+                }
         );
         return mock;
     }
@@ -104,8 +125,14 @@ public class OrdersControllerTest {
 
     @Test
     public void createOrder() {
+        // Ensure not found response with invalid customer
+        OrderCreateDTO dto = createDTO(66L);
+        assertEquals(HttpStatus.NOT_FOUND, client.create(dto).getStatus());
+
+        // Set valid customer and continue testing
         long customerId = createCustomer();
-        OrderCreateDTO dto = createDTO(customerId);
+        dto.setCustomerId(customerId);
+
         long orderId = createGetId(dto);
         Orders order = client.get(orderId);
 

@@ -62,7 +62,6 @@ public class ActionItemProvider
 
 			addNamePropertyDescriptor(object);
 			addPercentageDiscountPropertyDescriptor(object);
-			addQuantityDiscountPropertyDescriptor(object);
 			addPriceDiscountPropertyDescriptor(object);
 			addSetPricePropertyDescriptor(object);
 		}
@@ -109,28 +108,6 @@ public class ActionItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Quantity Discount feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addQuantityDiscountPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Action_quantityDiscount_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Action_quantityDiscount_feature", "_UI_Action_type"),
-				 OffersPackage.Literals.ACTION__QUANTITY_DISCOUNT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -208,7 +185,6 @@ public class ActionItemProvider
 		switch (notification.getFeatureID(Action.class)) {
 			case OffersPackage.ACTION__NAME:
 			case OffersPackage.ACTION__PERCENTAGE_DISCOUNT:
-			case OffersPackage.ACTION__QUANTITY_DISCOUNT:
 			case OffersPackage.ACTION__PRICE_DISCOUNT:
 			case OffersPackage.ACTION__SET_PRICE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

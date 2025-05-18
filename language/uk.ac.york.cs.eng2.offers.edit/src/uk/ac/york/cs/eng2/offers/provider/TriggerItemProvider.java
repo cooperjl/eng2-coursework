@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import uk.ac.york.cs.eng2.offers.OffersPackage;
 import uk.ac.york.cs.eng2.offers.Trigger;
-import uk.ac.york.cs.eng2.offers.TriggerType;
+import uk.ac.york.cs.eng2.offers.TriggerOn;
 
 /**
  * This is the item provider adapter for a {@link uk.ac.york.cs.eng2.offers.Trigger} object.
@@ -61,26 +61,26 @@ public class TriggerItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTriggerTypePropertyDescriptor(object);
+			addTriggerOnPropertyDescriptor(object);
 			addOfferPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Trigger Type feature.
+	 * This adds a property descriptor for the Trigger On feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTriggerTypePropertyDescriptor(Object object) {
+	protected void addTriggerOnPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Trigger_triggerType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_triggerType_feature", "_UI_Trigger_type"),
-				 OffersPackage.Literals.TRIGGER__TRIGGER_TYPE,
+				 getString("_UI_Trigger_triggerOn_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_triggerOn_feature", "_UI_Trigger_type"),
+				 OffersPackage.Literals.TRIGGER__TRIGGER_ON,
 				 true,
 				 false,
 				 false,
@@ -130,7 +130,7 @@ public class TriggerItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		TriggerType labelValue = ((Trigger)object).getTriggerType();
+		TriggerOn labelValue = ((Trigger)object).getTriggerOn();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Trigger_type") :
@@ -150,7 +150,7 @@ public class TriggerItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Trigger.class)) {
-			case OffersPackage.TRIGGER__TRIGGER_TYPE:
+			case OffersPackage.TRIGGER__TRIGGER_ON:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

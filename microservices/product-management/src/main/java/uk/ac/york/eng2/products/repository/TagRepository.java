@@ -4,9 +4,13 @@ import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.PageableRepository;
 import uk.ac.york.eng2.products.domain.Tag;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TagRepository extends PageableRepository<Tag, Long> {
     List<Tag> findByProductsId(long productsId);
+    Optional<Tag> findByName(String name);
+    List<Tag> findByNameInList(Collection<String> name);
 }

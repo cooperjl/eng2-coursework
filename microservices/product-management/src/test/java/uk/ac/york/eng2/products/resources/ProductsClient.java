@@ -6,7 +6,6 @@ import io.micronaut.http.annotation.*;
 import io.micronaut.http.client.annotation.Client;
 import uk.ac.york.eng2.products.domain.Product;
 import uk.ac.york.eng2.products.domain.Tag;
-import uk.ac.york.eng2.products.dto.Prices;
 import uk.ac.york.eng2.products.dto.ProductCreateDTO;
 
 import java.util.List;
@@ -30,9 +29,6 @@ public interface ProductsClient {
     @Get("/{id}/daily-orders")
     Map<String, Integer> getDailyOrders(@PathVariable long id);
 
-    @Get("/{id}/price/{quantity}")
-    Prices getPrices(@PathVariable long id, @PathVariable int quantity);
-
     @Put("/{id}")
     HttpResponse<Object> update(@PathVariable long id, @Body ProductCreateDTO dto);
 
@@ -40,7 +36,7 @@ public interface ProductsClient {
     HttpResponse<Object> delete(@PathVariable long id);
 
     @Put("/{id}/tags/{tagId}")
-    void addProductTag(@PathVariable long id, @PathVariable long tagId);
+    HttpResponse<Object> addProductTag(@PathVariable long id, @PathVariable long tagId);
 
     @Delete("/{id}/tags/{tagId}")
     void removeProductTag(@PathVariable long id, @PathVariable long tagId);

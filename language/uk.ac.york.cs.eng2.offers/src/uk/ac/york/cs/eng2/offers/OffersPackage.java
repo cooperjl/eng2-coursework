@@ -159,22 +159,13 @@ public interface OffersPackage extends EPackage {
 	int CATEGORY__PRODUCTS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Tags</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATEGORY__TAGS = 3;
-
-	/**
 	 * The number of structural features of the '<em>Category</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY_FEATURE_COUNT = 4;
+	int CATEGORY_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Category</em>' class.
@@ -343,13 +334,13 @@ public interface OffersPackage extends EPackage {
 	int TRIGGER = 5;
 
 	/**
-	 * The feature id for the '<em><b>Trigger Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Trigger On</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRIGGER__TRIGGER_TYPE = 0;
+	int TRIGGER__TRIGGER_ON = 0;
 
 	/**
 	 * The feature id for the '<em><b>Offer</b></em>' reference.
@@ -389,13 +380,22 @@ public interface OffersPackage extends EPackage {
 	int CONDITION = 6;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__NAME = 0;
+
+	/**
 	 * The number of structural features of the '<em>Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_FEATURE_COUNT = 0;
+	int CONDITION_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Condition</em>' class.
@@ -417,6 +417,15 @@ public interface OffersPackage extends EPackage {
 	int TAGGED_CONDITION = 7;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_CONDITION__NAME = CONDITION__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Tags</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -426,31 +435,13 @@ public interface OffersPackage extends EPackage {
 	int TAGGED_CONDITION__TAGS = CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Comparison</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_CONDITION__COMPARISON = CONDITION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Quantity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_CONDITION__QUANTITY = CONDITION_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Tagged Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 3;
+	int TAGGED_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Tagged Condition</em>' class.
@@ -472,6 +463,15 @@ public interface OffersPackage extends EPackage {
 	int PRODUCT_CONDITION = 8;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_CONDITION__NAME = CONDITION__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Product</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -481,31 +481,13 @@ public interface OffersPackage extends EPackage {
 	int PRODUCT_CONDITION__PRODUCT = CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Comparison</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_CONDITION__COMPARISON = CONDITION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Quantity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_CONDITION__QUANTITY = CONDITION_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Product Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 3;
+	int PRODUCT_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Product Condition</em>' class.
@@ -525,6 +507,15 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 */
 	int DAILY_ORDER_CONDITION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DAILY_ORDER_CONDITION__NAME = CONDITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Product</b></em>' reference.
@@ -582,6 +573,15 @@ public interface OffersPackage extends EPackage {
 	int PRICE_CONDITION = 10;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICE_CONDITION__NAME = CONDITION__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Price</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -626,6 +626,15 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 */
 	int DATE_RANGE_CONDITION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_RANGE_CONDITION__NAME = CONDITION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
@@ -692,22 +701,13 @@ public interface OffersPackage extends EPackage {
 	int ACTION__PERCENTAGE_DISCOUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Quantity Discount</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION__QUANTITY_DISCOUNT = 2;
-
-	/**
 	 * The feature id for the '<em><b>Price Discount</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION__PRICE_DISCOUNT = 3;
+	int ACTION__PRICE_DISCOUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Set Price</b></em>' attribute.
@@ -716,7 +716,7 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION__SET_PRICE = 4;
+	int ACTION__SET_PRICE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Action</em>' class.
@@ -725,7 +725,7 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_FEATURE_COUNT = 5;
+	int ACTION_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Action</em>' class.
@@ -765,15 +765,6 @@ public interface OffersPackage extends EPackage {
 	int TAGGED_DISCOUNT__PERCENTAGE_DISCOUNT = ACTION__PERCENTAGE_DISCOUNT;
 
 	/**
-	 * The feature id for the '<em><b>Quantity Discount</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_DISCOUNT__QUANTITY_DISCOUNT = ACTION__QUANTITY_DISCOUNT;
-
-	/**
 	 * The feature id for the '<em><b>Price Discount</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -792,13 +783,22 @@ public interface OffersPackage extends EPackage {
 	int TAGGED_DISCOUNT__SET_PRICE = ACTION__SET_PRICE;
 
 	/**
+	 * The feature id for the '<em><b>Quantity Discount</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_DISCOUNT__QUANTITY_DISCOUNT = ACTION_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Tags</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_DISCOUNT__TAGS = ACTION_FEATURE_COUNT + 0;
+	int TAGGED_DISCOUNT__TAGS = ACTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Tagged Discount</em>' class.
@@ -807,7 +807,7 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_DISCOUNT_FEATURE_COUNT = ACTION_FEATURE_COUNT + 1;
+	int TAGGED_DISCOUNT_FEATURE_COUNT = ACTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Tagged Discount</em>' class.
@@ -847,15 +847,6 @@ public interface OffersPackage extends EPackage {
 	int PRODUCT_DISCOUNT__PERCENTAGE_DISCOUNT = ACTION__PERCENTAGE_DISCOUNT;
 
 	/**
-	 * The feature id for the '<em><b>Quantity Discount</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_DISCOUNT__QUANTITY_DISCOUNT = ACTION__QUANTITY_DISCOUNT;
-
-	/**
 	 * The feature id for the '<em><b>Price Discount</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -874,13 +865,22 @@ public interface OffersPackage extends EPackage {
 	int PRODUCT_DISCOUNT__SET_PRICE = ACTION__SET_PRICE;
 
 	/**
+	 * The feature id for the '<em><b>Quantity Discount</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_DISCOUNT__QUANTITY_DISCOUNT = ACTION_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Product</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_DISCOUNT__PRODUCT = ACTION_FEATURE_COUNT + 0;
+	int PRODUCT_DISCOUNT__PRODUCT = ACTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Product Discount</em>' class.
@@ -889,7 +889,7 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_DISCOUNT_FEATURE_COUNT = ACTION_FEATURE_COUNT + 1;
+	int PRODUCT_DISCOUNT_FEATURE_COUNT = ACTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Product Discount</em>' class.
@@ -929,15 +929,6 @@ public interface OffersPackage extends EPackage {
 	int ORDER_DISCOUNT__PERCENTAGE_DISCOUNT = ACTION__PERCENTAGE_DISCOUNT;
 
 	/**
-	 * The feature id for the '<em><b>Quantity Discount</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDER_DISCOUNT__QUANTITY_DISCOUNT = ACTION__QUANTITY_DISCOUNT;
-
-	/**
 	 * The feature id for the '<em><b>Price Discount</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -974,14 +965,14 @@ public interface OffersPackage extends EPackage {
 	int ORDER_DISCOUNT_OPERATION_COUNT = ACTION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.TriggerType <em>Trigger Type</em>}' enum.
+	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.TriggerOn <em>Trigger On</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.cs.eng2.offers.TriggerType
-	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getTriggerType()
+	 * @see uk.ac.york.cs.eng2.offers.TriggerOn
+	 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getTriggerOn()
 	 * @generated
 	 */
-	int TRIGGER_TYPE = 16;
+	int TRIGGER_ON = 16;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.cs.eng2.offers.Comparison <em>Comparison</em>}' enum.
@@ -1090,17 +1081,6 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCategory_Products();
-
-	/**
-	 * Returns the meta object for the reference list '{@link uk.ac.york.cs.eng2.offers.Category#getTags <em>Tags</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Tags</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Category#getTags()
-	 * @see #getCategory()
-	 * @generated
-	 */
-	EReference getCategory_Tags();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.Product <em>Product</em>}'.
@@ -1220,15 +1200,15 @@ public interface OffersPackage extends EPackage {
 	EClass getTrigger();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.Trigger#getTriggerType <em>Trigger Type</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.Trigger#getTriggerOn <em>Trigger On</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Trigger Type</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Trigger#getTriggerType()
+	 * @return the meta object for the attribute '<em>Trigger On</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.Trigger#getTriggerOn()
 	 * @see #getTrigger()
 	 * @generated
 	 */
-	EAttribute getTrigger_TriggerType();
+	EAttribute getTrigger_TriggerOn();
 
 	/**
 	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.Trigger#getOffer <em>Offer</em>}'.
@@ -1252,6 +1232,17 @@ public interface OffersPackage extends EPackage {
 	EClass getCondition();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.Condition#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.Condition#getName()
+	 * @see #getCondition()
+	 * @generated
+	 */
+	EAttribute getCondition_Name();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.TaggedCondition <em>Tagged Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1273,28 +1264,6 @@ public interface OffersPackage extends EPackage {
 	EReference getTaggedCondition_Tags();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.TaggedCondition#getComparison <em>Comparison</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Comparison</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.TaggedCondition#getComparison()
-	 * @see #getTaggedCondition()
-	 * @generated
-	 */
-	EAttribute getTaggedCondition_Comparison();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.TaggedCondition#getQuantity <em>Quantity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Quantity</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.TaggedCondition#getQuantity()
-	 * @see #getTaggedCondition()
-	 * @generated
-	 */
-	EAttribute getTaggedCondition_Quantity();
-
-	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.ProductCondition <em>Product Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1314,28 +1283,6 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProductCondition_Product();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.ProductCondition#getComparison <em>Comparison</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Comparison</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.ProductCondition#getComparison()
-	 * @see #getProductCondition()
-	 * @generated
-	 */
-	EAttribute getProductCondition_Comparison();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.ProductCondition#getQuantity <em>Quantity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Quantity</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.ProductCondition#getQuantity()
-	 * @see #getProductCondition()
-	 * @generated
-	 */
-	EAttribute getProductCondition_Quantity();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.cs.eng2.offers.DailyOrderCondition <em>Daily Order Condition</em>}'.
@@ -1477,17 +1424,6 @@ public interface OffersPackage extends EPackage {
 	EAttribute getAction_PercentageDiscount();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.Action#getQuantityDiscount <em>Quantity Discount</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Quantity Discount</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.Action#getQuantityDiscount()
-	 * @see #getAction()
-	 * @generated
-	 */
-	EAttribute getAction_QuantityDiscount();
-
-	/**
 	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.Action#getPriceDiscount <em>Price Discount</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1520,6 +1456,17 @@ public interface OffersPackage extends EPackage {
 	EClass getTaggedDiscount();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.TaggedDiscount#getQuantityDiscount <em>Quantity Discount</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Quantity Discount</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.TaggedDiscount#getQuantityDiscount()
+	 * @see #getTaggedDiscount()
+	 * @generated
+	 */
+	EAttribute getTaggedDiscount_QuantityDiscount();
+
+	/**
 	 * Returns the meta object for the reference list '{@link uk.ac.york.cs.eng2.offers.TaggedDiscount#getTags <em>Tags</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1539,6 +1486,17 @@ public interface OffersPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getProductDiscount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.cs.eng2.offers.ProductDiscount#getQuantityDiscount <em>Quantity Discount</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Quantity Discount</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.ProductDiscount#getQuantityDiscount()
+	 * @see #getProductDiscount()
+	 * @generated
+	 */
+	EAttribute getProductDiscount_QuantityDiscount();
 
 	/**
 	 * Returns the meta object for the reference '{@link uk.ac.york.cs.eng2.offers.ProductDiscount#getProduct <em>Product</em>}'.
@@ -1562,14 +1520,14 @@ public interface OffersPackage extends EPackage {
 	EClass getOrderDiscount();
 
 	/**
-	 * Returns the meta object for enum '{@link uk.ac.york.cs.eng2.offers.TriggerType <em>Trigger Type</em>}'.
+	 * Returns the meta object for enum '{@link uk.ac.york.cs.eng2.offers.TriggerOn <em>Trigger On</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Trigger Type</em>'.
-	 * @see uk.ac.york.cs.eng2.offers.TriggerType
+	 * @return the meta object for enum '<em>Trigger On</em>'.
+	 * @see uk.ac.york.cs.eng2.offers.TriggerOn
 	 * @generated
 	 */
-	EEnum getTriggerType();
+	EEnum getTriggerOn();
 
 	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.cs.eng2.offers.Comparison <em>Comparison</em>}'.
@@ -1681,14 +1639,6 @@ public interface OffersPackage extends EPackage {
 		EReference CATEGORY__PRODUCTS = eINSTANCE.getCategory_Products();
 
 		/**
-		 * The meta object literal for the '<em><b>Tags</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CATEGORY__TAGS = eINSTANCE.getCategory_Tags();
-
-		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductImpl <em>Product</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1785,12 +1735,12 @@ public interface OffersPackage extends EPackage {
 		EClass TRIGGER = eINSTANCE.getTrigger();
 
 		/**
-		 * The meta object literal for the '<em><b>Trigger Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Trigger On</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TRIGGER__TRIGGER_TYPE = eINSTANCE.getTrigger_TriggerType();
+		EAttribute TRIGGER__TRIGGER_ON = eINSTANCE.getTrigger_TriggerOn();
 
 		/**
 		 * The meta object literal for the '<em><b>Offer</b></em>' reference feature.
@@ -1811,6 +1761,14 @@ public interface OffersPackage extends EPackage {
 		EClass CONDITION = eINSTANCE.getCondition();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION__NAME = eINSTANCE.getCondition_Name();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.TaggedConditionImpl <em>Tagged Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1829,22 +1787,6 @@ public interface OffersPackage extends EPackage {
 		EReference TAGGED_CONDITION__TAGS = eINSTANCE.getTaggedCondition_Tags();
 
 		/**
-		 * The meta object literal for the '<em><b>Comparison</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TAGGED_CONDITION__COMPARISON = eINSTANCE.getTaggedCondition_Comparison();
-
-		/**
-		 * The meta object literal for the '<em><b>Quantity</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TAGGED_CONDITION__QUANTITY = eINSTANCE.getTaggedCondition_Quantity();
-
-		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.ProductConditionImpl <em>Product Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1861,22 +1803,6 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PRODUCT_CONDITION__PRODUCT = eINSTANCE.getProductCondition_Product();
-
-		/**
-		 * The meta object literal for the '<em><b>Comparison</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PRODUCT_CONDITION__COMPARISON = eINSTANCE.getProductCondition_Comparison();
-
-		/**
-		 * The meta object literal for the '<em><b>Quantity</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PRODUCT_CONDITION__QUANTITY = eINSTANCE.getProductCondition_Quantity();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.impl.DailyOrderConditionImpl <em>Daily Order Condition</em>}' class.
@@ -1991,14 +1917,6 @@ public interface OffersPackage extends EPackage {
 		EAttribute ACTION__PERCENTAGE_DISCOUNT = eINSTANCE.getAction_PercentageDiscount();
 
 		/**
-		 * The meta object literal for the '<em><b>Quantity Discount</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ACTION__QUANTITY_DISCOUNT = eINSTANCE.getAction_QuantityDiscount();
-
-		/**
 		 * The meta object literal for the '<em><b>Price Discount</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2025,6 +1943,14 @@ public interface OffersPackage extends EPackage {
 		EClass TAGGED_DISCOUNT = eINSTANCE.getTaggedDiscount();
 
 		/**
+		 * The meta object literal for the '<em><b>Quantity Discount</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAGGED_DISCOUNT__QUANTITY_DISCOUNT = eINSTANCE.getTaggedDiscount_QuantityDiscount();
+
+		/**
 		 * The meta object literal for the '<em><b>Tags</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2041,6 +1967,14 @@ public interface OffersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PRODUCT_DISCOUNT = eINSTANCE.getProductDiscount();
+
+		/**
+		 * The meta object literal for the '<em><b>Quantity Discount</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRODUCT_DISCOUNT__QUANTITY_DISCOUNT = eINSTANCE.getProductDiscount_QuantityDiscount();
 
 		/**
 		 * The meta object literal for the '<em><b>Product</b></em>' reference feature.
@@ -2061,14 +1995,14 @@ public interface OffersPackage extends EPackage {
 		EClass ORDER_DISCOUNT = eINSTANCE.getOrderDiscount();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.TriggerType <em>Trigger Type</em>}' enum.
+		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.TriggerOn <em>Trigger On</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.cs.eng2.offers.TriggerType
-		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getTriggerType()
+		 * @see uk.ac.york.cs.eng2.offers.TriggerOn
+		 * @see uk.ac.york.cs.eng2.offers.impl.OffersPackageImpl#getTriggerOn()
 		 * @generated
 		 */
-		EEnum TRIGGER_TYPE = eINSTANCE.getTriggerType();
+		EEnum TRIGGER_ON = eINSTANCE.getTriggerOn();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.cs.eng2.offers.Comparison <em>Comparison</em>}' enum.

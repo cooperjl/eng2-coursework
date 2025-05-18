@@ -5,7 +5,7 @@
       <metamodel href="../../uk.ac.york.cs.eng2.offers/model/offers.ecore#/"/>
       <defaultLayer name="offers.products.layers.default" label="Default Layer">
         <nodeMappings name="offers.products.nodes.category" label="Category Node" labelDirectEdit="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.products.tools.editCategoryLabel']" domainClass="offers::Category">
-          <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="12" labelPosition="node" resizeKind="NSEW" width="12" height="6">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
@@ -203,7 +203,7 @@
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
           </style>
         </containerMappings>
@@ -215,49 +215,49 @@
         <edgeMappings name="offers.offers.edges.trigger2" label="Trigger Edge" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@containerMappings[name='offers.offers.containers.offers']" targetFinderExpression="feature:offer" sourceFinderExpression="aql:self.eContainer()" domainClass="offers::Trigger" useDomainElement="true" reconnections="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.offers.tools.reconnectTriggerTarget'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.offers.tools.reconnectTriggerSource']">
           <style sizeComputationExpression="2" routingStyle="manhattan">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription labelSize="12" labelExpression="feature:triggerType">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12" labelExpression="feature:triggerOn">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
         <containerMappings name="offers.offers.containers.offers" label="Offer Container" labelDirectEdit="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.offers.tools.editOfferLabel']" domainClass="offers::Offer" dropDescriptions="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.2/@ownedTools[name='offers.offers.tools.moveCondition'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.offers.tools.moveAction']">
           <borderedNodeMappings name="offers.offers.nodes.priceCondition" label="Price Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::PriceCondition">
-            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/PriceCondition.svg" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" borderLineStyle="dash" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/PriceCondition.svg" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
             </style>
           </borderedNodeMappings>
           <borderedNodeMappings name="offers.offers.nodes.dailyOrderCondition" label="Daily Order Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::DailyOrderCondition">
-            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/DailyOrderCondition.svg" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" borderLineStyle="dash" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/DailyOrderCondition.svg" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
             </style>
           </borderedNodeMappings>
           <borderedNodeMappings name="offers.offers.nodes.taggedCondition" label="Tagged Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::TaggedCondition">
-            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/TaggedCondition.svg" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" borderLineStyle="dash" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/TaggedCondition.svg" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
             </style>
           </borderedNodeMappings>
           <borderedNodeMappings name="offers.offers.nodes.productCondition" label="Product Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::ProductCondition">
-            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/ProductCondition.svg" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" borderLineStyle="dash" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/ProductCondition.svg" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
             </style>
           </borderedNodeMappings>
           <borderedNodeMappings name="offers.offers.nodes.dateRangeCondition" label="Date Range Condition Node" semanticCandidatesExpression="feature:conditions" domainClass="offers::DateRangeCondition">
-            <style xsi:type="style:SquareDescription" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/DateRangeCondition.svg" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" borderLineStyle="dash" labelSize="12" labelExpression="aql:null" iconPath="/uk.ac.york.cs.eng2.offers.edit/icons/full/svg/obj/DateRangeCondition.svg" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
             </style>
           </borderedNodeMappings>
           <subNodeMappings name="offers.offers.nodes.discount" label="Discount Node" labelDirectEdit="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.offers']/@defaultLayer/@toolSections.1/@ownedTools[name='offers.offers.tools.editActionLabel']" semanticCandidatesExpression="feature:actions" domainClass="offers::Action">
-            <style xsi:type="style:SquareDescription" labelSize="12" tooltipExpression="var:self" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" labelSize="12" tooltipExpression="var:self" labelPosition="node" resizeKind="NSEW" width="14" height="3">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
@@ -419,6 +419,32 @@
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:newSemanticContainer">
                 <subModelOperations xsi:type="tool_1:SetValue" featureName="conditions" valueExpression="var:element"/>
               </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="offers.diagrams.tags" label="Tags Diagram" domainClass="offers::Model" enablePopupBars="true">
+      <defaultLayer name="Default">
+        <nodeMappings name="offers.tags.nodes.tags" label="Tag Node" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.products']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.products.tools.deleteTagFromProduct']" labelDirectEdit="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.tags']/@defaultLayer/@toolSections.0/@ownedTools[name='offers.tags.tools.editTagLabel']" semanticCandidatesExpression="feature:tags" domainClass="offers::Tag">
+          <style xsi:type="style:SquareDescription" labelSize="12" labelPosition="node" resizeKind="NSEW" width="10" height="3">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+          </style>
+        </nodeMappings>
+        <toolSections name="offers.tags.nodeTools" label="Node Tools">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="offers.tags.tools.createTag" label="Create Tag" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='offers.diagrams.tags']/@defaultLayer/@nodeMappings[name='offers.tags.nodes.tags']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="offers::Tag" referenceName="tags"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="offers.tags.tools.editTagLabel" label="Edit Tag Label" inputLabelExpression="feature:name">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
             </initialOperation>
           </ownedTools>
         </toolSections>

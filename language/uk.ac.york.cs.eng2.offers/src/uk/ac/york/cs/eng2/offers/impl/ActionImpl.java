@@ -22,7 +22,6 @@ import uk.ac.york.cs.eng2.offers.OffersPackage;
  * <ul>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ActionImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ActionImpl#getPercentageDiscount <em>Percentage Discount</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ActionImpl#getQuantityDiscount <em>Quantity Discount</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ActionImpl#getPriceDiscount <em>Price Discount</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.ActionImpl#getSetPrice <em>Set Price</em>}</li>
  * </ul>
@@ -69,26 +68,6 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected float percentageDiscount = PERCENTAGE_DISCOUNT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getQuantityDiscount() <em>Quantity Discount</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQuantityDiscount()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int QUANTITY_DISCOUNT_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getQuantityDiscount() <em>Quantity Discount</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQuantityDiscount()
-	 * @generated
-	 * @ordered
-	 */
-	protected int quantityDiscount = QUANTITY_DISCOUNT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPriceDiscount() <em>Price Discount</em>}' attribute.
@@ -201,29 +180,6 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public int getQuantityDiscount() {
-		return quantityDiscount;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setQuantityDiscount(int newQuantityDiscount) {
-		int oldQuantityDiscount = quantityDiscount;
-		quantityDiscount = newQuantityDiscount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OffersPackage.ACTION__QUANTITY_DISCOUNT, oldQuantityDiscount, quantityDiscount));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public float getPriceDiscount() {
 		return priceDiscount;
 	}
@@ -276,8 +232,6 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 				return getName();
 			case OffersPackage.ACTION__PERCENTAGE_DISCOUNT:
 				return getPercentageDiscount();
-			case OffersPackage.ACTION__QUANTITY_DISCOUNT:
-				return getQuantityDiscount();
 			case OffersPackage.ACTION__PRICE_DISCOUNT:
 				return getPriceDiscount();
 			case OffersPackage.ACTION__SET_PRICE:
@@ -299,9 +253,6 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case OffersPackage.ACTION__PERCENTAGE_DISCOUNT:
 				setPercentageDiscount((Float)newValue);
-				return;
-			case OffersPackage.ACTION__QUANTITY_DISCOUNT:
-				setQuantityDiscount((Integer)newValue);
 				return;
 			case OffersPackage.ACTION__PRICE_DISCOUNT:
 				setPriceDiscount((Float)newValue);
@@ -327,9 +278,6 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 			case OffersPackage.ACTION__PERCENTAGE_DISCOUNT:
 				setPercentageDiscount(PERCENTAGE_DISCOUNT_EDEFAULT);
 				return;
-			case OffersPackage.ACTION__QUANTITY_DISCOUNT:
-				setQuantityDiscount(QUANTITY_DISCOUNT_EDEFAULT);
-				return;
 			case OffersPackage.ACTION__PRICE_DISCOUNT:
 				setPriceDiscount(PRICE_DISCOUNT_EDEFAULT);
 				return;
@@ -352,8 +300,6 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case OffersPackage.ACTION__PERCENTAGE_DISCOUNT:
 				return percentageDiscount != PERCENTAGE_DISCOUNT_EDEFAULT;
-			case OffersPackage.ACTION__QUANTITY_DISCOUNT:
-				return quantityDiscount != QUANTITY_DISCOUNT_EDEFAULT;
 			case OffersPackage.ACTION__PRICE_DISCOUNT:
 				return priceDiscount != PRICE_DISCOUNT_EDEFAULT;
 			case OffersPackage.ACTION__SET_PRICE:
@@ -376,8 +322,6 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 		result.append(name);
 		result.append(", percentageDiscount: ");
 		result.append(percentageDiscount);
-		result.append(", quantityDiscount: ");
-		result.append(quantityDiscount);
 		result.append(", priceDiscount: ");
 		result.append(priceDiscount);
 		result.append(", setPrice: ");

@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import uk.ac.york.cs.eng2.offers.Category;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
 import uk.ac.york.cs.eng2.offers.Product;
-import uk.ac.york.cs.eng2.offers.Tag;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +34,6 @@ import uk.ac.york.cs.eng2.offers.Tag;
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl#getSubcategories <em>Subcategories</em>}</li>
  *   <li>{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl#getProducts <em>Products</em>}</li>
- *   <li>{@link uk.ac.york.cs.eng2.offers.impl.CategoryImpl#getTags <em>Tags</em>}</li>
  * </ul>
  *
  * @generated
@@ -80,16 +78,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	 * @ordered
 	 */
 	protected EList<Product> products;
-
-	/**
-	 * The cached value of the '{@link #getTags() <em>Tags</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTags()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Tag> tags;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -165,19 +153,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	 * @generated
 	 */
 	@Override
-	public EList<Tag> getTags() {
-		if (tags == null) {
-			tags = new EObjectResolvingEList<Tag>(Tag.class, this, OffersPackage.CATEGORY__TAGS);
-		}
-		return tags;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case OffersPackage.CATEGORY__SUBCATEGORIES:
@@ -200,8 +175,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 				return getSubcategories();
 			case OffersPackage.CATEGORY__PRODUCTS:
 				return getProducts();
-			case OffersPackage.CATEGORY__TAGS:
-				return getTags();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -226,10 +199,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 				getProducts().clear();
 				getProducts().addAll((Collection<? extends Product>)newValue);
 				return;
-			case OffersPackage.CATEGORY__TAGS:
-				getTags().clear();
-				getTags().addAll((Collection<? extends Tag>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -251,9 +220,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 			case OffersPackage.CATEGORY__PRODUCTS:
 				getProducts().clear();
 				return;
-			case OffersPackage.CATEGORY__TAGS:
-				getTags().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -272,8 +238,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 				return subcategories != null && !subcategories.isEmpty();
 			case OffersPackage.CATEGORY__PRODUCTS:
 				return products != null && !products.isEmpty();
-			case OffersPackage.CATEGORY__TAGS:
-				return tags != null && !tags.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

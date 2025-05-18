@@ -14,7 +14,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import uk.ac.york.cs.eng2.offers.Comparison;
 import uk.ac.york.cs.eng2.offers.DailyOrderCondition;
 import uk.ac.york.cs.eng2.offers.OffersPackage;
 
@@ -138,8 +137,7 @@ public class DailyOrderConditionItemProvider extends ConditionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		Comparison labelValue = ((DailyOrderCondition)object).getComparison();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((DailyOrderCondition)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DailyOrderCondition_type") :
 			getString("_UI_DailyOrderCondition_type") + " " + label;
