@@ -1,0 +1,49 @@
+package uk.ac.york.eng2.products.offers.gen.conditions;
+
+import jakarta.inject.Singleton;
+import uk.ac.york.eng2.products.offers.conditions.[%=c.eClass.name%];
+[%if (c.eClass.eAllAttributes.name.includes("comparison")) {%]
+import uk.ac.york.eng2.products.offers.Comparison;
+[%}%]
+
+@Singleton
+public class [%=c.name%] extends [%=c.eClass.name%] {
+	public [%=c.name%]() {
+		[%for (parameter in c.getJavaParameters()) {%]
+		[%=parameter%];
+		[%}%]
+	}
+	
+	
+}
+
+[%
+operation Condition getJavaParameters() {
+	var parameters = new Sequence;
+	// Get names from references to products and tags
+	var ref = self.eClass.eAllReferences.selectOne(r | r != null);
+	// Check ref not null first before trying to get it
+	if (ref != null and self.eGet(ref) != null) {
+		var param = self.eGet(ref);
+		if (param.eClass.name == "Product") {
+			parameters.add('setProductString("' + param.name + '")');
+		} else { // is a tag
+			parameters.add("setTagStrings(new String[] {" + param.name.collect(n | '"' + n + '"').concat(", ") + "})");
+		}
+	}
+	// Get attributes
+	for (attribute in self.eClass.eAllAttributes) {
+		var base = "set" + attribute.name.ftuc() + "(";
+		if (attribute.name == "comparison") {
+		  parameters.add(base + "Comparison." + self.eGet(attribute) + ")");
+		} else if (attribute.name == "startDate" or attribute.name == "endDate") {
+		  parameters.add("set" + attribute.name.ftuc() + '("' + self.eGet(attribute) + '")');
+		}
+		else if (attribute.name != "name") {	
+		  //parameters.add(attribute.name + " = " + self.eGet(attribute));
+		  parameters.add(base + self.eGet(attribute) + ")");
+		}
+	}
+	return parameters;
+}
+%]

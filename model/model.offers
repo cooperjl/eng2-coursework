@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dis:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dis="http://cs.york.ac.uk/eng2/202425/offers">
+  <products name="Large Chocolate Cake" tags="//@tags.0 //@tags.2 //@tags.1"/>
+  <products name="Victorian Sponge Cake" tags="//@tags.0"/>
+  <products name="Large Pizza" tags="//@tags.2 //@tags.5"/>
+  <products name="Large Chocolate Ice Cream" tags="//@tags.2 //@tags.1 //@tags.4"/>
+  <products name="Bakewell Tart" tags="//@tags.3"/>
+  <products name="Medium Pizza" tags="//@tags.5 //@tags.6"/>
+  <products name="Small Pizza" tags="//@tags.5 //@tags.7"/>
+  <categories name="Pizza" products="//@products.2 //@products.5 //@products.6"/>
+  <categories name="Sweets" products="//@products.4">
+    <subcategories name="Cakes" products="//@products.0 //@products.1"/>
+    <subcategories name="Ice Cream" products="//@products.3"/>
+  </categories>
+  <tags name="cake"/>
+  <tags name="chocolate"/>
+  <tags name="large"/>
+  <tags name="tart"/>
+  <tags name="ice cream"/>
+  <tags name="pizza"/>
+  <tags name="medium"/>
+  <tags name="small"/>
+  <offers name="BakewellTartsOffer">
+    <conditions xsi:type="dis:DailyOrderCondition" name="DailyTartOrderCondition" product="//@products.4" comparison="LESS_THAN_EQUAL" threshold="10"/>
+    <actions xsi:type="dis:ProductDiscount" name="BakewellTartsDiscount" percentageDiscount="10.0" product="//@products.4"/>
+    <triggers offer="//@offers.1"/>
+  </offers>
+  <offers name="LargePizzasOffer">
+    <conditions xsi:type="dis:TaggedCondition" name="LargePizzaCondition" tags="//@tags.2 //@tags.5"/>
+    <actions xsi:type="dis:TaggedDiscount" name="FreeLargeIceCream" quantityDiscount="1" tags="//@tags.2 //@tags.4"/>
+    <actions xsi:type="dis:TaggedDiscount" name="LargePizzasDiscount" setPrice="10.0" quantityDiscount="1" tags="//@tags.2 //@tags.5"/>
+    <triggers triggerOn="IF_NOT_MATCH" offer="//@offers.2"/>
+    <triggers triggerOn="IF_MATCH" offer="//@offers.3"/>
+  </offers>
+  <offers name="TwoForOnePizzasOffer">
+    <conditions xsi:type="dis:TaggedCondition" name="OtherPizzaConditon" tags="//@tags.5"/>
+    <actions xsi:type="dis:TaggedDiscount" name="TwoForOnePizzas" quantityDiscount="1" tags="//@tags.5"/>
+    <triggers offer="//@offers.3"/>
+  </offers>
+  <offers name="ChristmasDayDiscount">
+    <conditions xsi:type="dis:DateRangeCondition" name="ChristmasDayCondition" startDate="2025-12-25T00:00:00.000+0000" endDate="2025-12-26T00:00:00.000+0000"/>
+    <conditions xsi:type="dis:PriceCondition" name="ChristmasOrderPriceCondition" price="60.0" comparison="GREATER_THAN_EQUAL"/>
+    <actions xsi:type="dis:OrderDiscount" name="ChristmasOrderDiscount" percentageDiscount="10.0"/>
+    <triggers triggerOn="IF_NOT_MATCH" offer="//@offers.4"/>
+  </offers>
+  <offers name="ChristmasDayCakeOffer">
+    <conditions xsi:type="dis:DateRangeCondition" name="ChristmasDayCondition" startDate="2025-12-25T00:00:00.000+0000" endDate="2025-12-26T00:00:00.000+0000"/>
+    <conditions xsi:type="dis:TaggedCondition" name="ChocolateCakeCondition" tags="//@tags.0 //@tags.1"/>
+    <conditions xsi:type="dis:PriceCondition" name="ChristmasCakePriceCondition" price="50.0" comparison="GREATER_THAN_EQUAL"/>
+    <actions xsi:type="dis:OrderDiscount" name="ChristmasCakeDiscount" priceDiscount="5.0"/>
+  </offers>
+</dis:Model>

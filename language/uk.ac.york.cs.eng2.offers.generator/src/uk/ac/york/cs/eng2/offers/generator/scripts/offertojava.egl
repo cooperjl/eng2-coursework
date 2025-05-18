@@ -1,0 +1,87 @@
+package uk.ac.york.eng2.products.offers.gen;
+
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
+import uk.ac.york.eng2.products.dto.OrderPricingDTO;
+[%for (condition in o.conditions) {%]
+import uk.ac.york.eng2.products.offers.gen.conditions.[%=condition.name%];
+[%}%]
+[%for (action in o.actions) {%]
+import uk.ac.york.eng2.products.offers.gen.actions.[%=action.name%];
+[%}%]
+
+@Singleton
+public class [%=o.name%] {
+	[%for (condition in o.conditions) {%]
+	@Inject
+	private [%=condition.name%] [%=condition.name.ftlc()%];
+	[%}%]
+	[%for (action in o.actions) {%]
+	@Inject
+	private [%=action.name%] [%=action.name.ftlc()%];
+	[%}%]
+	[%if (o.isAlwaysTrigger()) {%]
+	@Inject
+	private [%=o.getAlwaysTrigger().name%] [%=o.getAlwaysTrigger().name.ftlc()%];
+	[%} if (o.isIfMatchTrigger()){%]
+	@Inject
+	private [%=o.getIfMatchTrigger().name%] [%=o.getIfMatchTrigger().name.ftlc()%];
+	[%} if (o.isIfNotMatchTrigger()){%]
+	@Inject
+	private [%=o.getIfNotMatchTrigger().name%] [%=o.getIfNotMatchTrigger().name.ftlc()%];
+	[%}%]
+	
+	public [%=o.name%]() {}
+	
+	public void applyOffer(OrderPricingDTO order) {
+		boolean shouldApplyOffer = [%=o.conditions.name.collect(c | c.ftlc() + ".eval(order)").concat(" && ")%];
+		
+		if (shouldApplyOffer) {
+			[%for (action in o.actions) {%]
+			[%=action.name.ftlc()%].apply(order);
+			[%}%]	
+			
+			[%if (o.isIfMatchTrigger()) {%]
+			[%=o.getIfMatchTrigger().name.ftlc()%].applyOffer(order);
+			[%}%]
+		[%if (o.isIfNotMatchTrigger()) {%]
+		} else {
+			[%=o.getIfNotMatchTrigger().name.ftlc()%].applyOffer(order);
+		}
+		[%} else {%]
+		}
+		[%}%]
+		
+		[%if (o.isAlwaysTrigger()) {%]
+		[%=o.getAlwaysTrigger().name.ftlc()%].applyOffer(order);
+		[%}%]
+	}
+}
+
+[%
+operation Offer getJavaParameters() {
+	var parameters = new Sequence;
+	for (trigger in self.triggers) {
+		parameters.add(trigger.offer.name + " " + trigger.offer.name.ftlc());
+	}
+	return parameters.concat(", ");
+}
+operation Offer isAlwaysTrigger() {
+	return self.triggers.exists(t | t.triggerOn == TriggerOn#ALWAYS);
+}
+operation Offer getAlwaysTrigger() {
+	return self.triggers.selectOne(t | t.triggerOn == TriggerOn#ALWAYS).offer;
+}
+operation Offer isIfMatchTrigger() {
+	return self.triggers.exists(t | t.triggerOn == TriggerOn#IF_MATCH);
+}
+operation Offer getIfMatchTrigger() {
+	return self.triggers.selectOne(t | t.triggerOn == TriggerOn#IF_MATCH).offer;
+}
+operation Offer isIfNotMatchTrigger() {
+	return self.triggers.exists(t | t.triggerOn == TriggerOn#IF_NOT_MATCH);
+}
+operation Offer getIfNotMatchTrigger() {
+	return self.triggers.selectOne(t | t.triggerOn == TriggerOn#IF_NOT_MATCH).offer;
+}
+%]

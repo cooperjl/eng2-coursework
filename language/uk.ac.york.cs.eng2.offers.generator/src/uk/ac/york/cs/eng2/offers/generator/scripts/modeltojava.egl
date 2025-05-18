@@ -1,0 +1,24 @@
+package uk.ac.york.eng2.products.offers.gen;
+
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
+import uk.ac.york.eng2.products.dto.OrderPricingDTO;
+
+@Singleton
+public class OfferRules {
+	@Inject
+  	private [%=m.getInitialOffer().name%] [%=m.getInitialOffer().name.ftlc()%];
+	
+	public OfferRules() {}
+	
+	public OrderPricingDTO applyOfferRules(OrderPricingDTO order) {
+		[%=m.getInitialOffer().name.ftlc()%].applyOffer(order);
+		return order;
+	}
+}
+[%
+@cached
+operation Model getInitialOffer() {
+	return self.offers.selectOne(o | not Trigger.all.offer.includes(o));
+}
+%]

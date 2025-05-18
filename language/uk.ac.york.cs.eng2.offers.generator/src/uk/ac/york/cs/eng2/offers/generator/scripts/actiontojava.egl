@@ -1,0 +1,36 @@
+package uk.ac.york.eng2.products.offers.gen.actions;
+
+import jakarta.inject.Singleton;
+import uk.ac.york.eng2.products.offers.actions.[%=a.eClass.name%];
+
+@Singleton
+public class [%=a.name%] extends [%=a.eClass.name%] {
+	public [%=a.name%]() {
+		[%for (parameter in a.getJavaParameters()) {%]
+		[%=parameter%];
+		[%}%]
+	}
+}
+
+[%
+operation Action getJavaParameters() {
+	var parameters = new Sequence;
+	// Get attributes
+	for (attribute in self.eClass.eAllAttributes) {
+		if (attribute.name != "name") {
+			parameters.add("set" + attribute.name.ftuc() + "(" + self.eGet(attribute) + ")");
+		}
+	}
+	// Get names from references to products and tags
+	var ref = self.eClass.eAllReferences.selectOne(r | r != null);
+	if (ref != null and self.eGet(ref) != null) {
+		var param = self.eGet(ref);
+		if (param.eClass.name == "Product") {
+			parameters.add('setProductString("' + param.name + '")');
+		} else { // is a tag
+			parameters.add("setTagStrings(new String[] {" + param.name.collect(n | '"' + n + '"').concat(", ") + "})");
+		}
+	}
+	return parameters;
+}
+%]
