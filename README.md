@@ -1,3 +1,10 @@
-# 2024-25 ENG2 Food Delivery assessment
+# Food Delivery System
 
-This is a repository of a completed coursework for the 2024-25 edition of the Engineering 2 module in the Computer Science course of the University of York.
+Food delivery app system. Uses Micronaut for data-driven backend microservices for managing the
+orders of users, and managing the products that are available to order.
+
+
+Additionally, uses the Eclipse Epsilon ecosystem for model driven engineering to drive an offers
+system, which is friendly to non-experts using a graphical interface that powers code generation
+for integration into the microservices, for a completed system.
+
